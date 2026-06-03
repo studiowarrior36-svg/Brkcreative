@@ -264,7 +264,7 @@
             100% { transform: translateY(-1000px); }
         }
 
-        /* --- TARIFS (4 CARTES INTERACTIVES AVEC ZOOM + BORDURE BLEUE) --- */
+        /* --- TARIFS --- */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -326,7 +326,7 @@
             background-color: #0077ed;
         }
 
-        /* --- TÉMOIGNAGES --- */
+        /* --- CLIENTS (MARQUEE) --- */
         .marquee-container {
             width: 100%;
             overflow: hidden;
@@ -398,7 +398,7 @@
             text-decoration: underline;
         }
 
-        /* --- LIGHTBOX & MODALE MENTIONS LÉGALES --- */
+        /* --- LIGHTBOX & MODALE POLITIQUES LÉGALES --- */
         .lightbox {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -414,22 +414,23 @@
         .lightbox-content { max-width: 85vw; max-height: 80vh; width: auto; height: auto; object-fit: contain; }
         .lightbox-close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 2.5rem; cursor: pointer; z-index: 2100; }
 
-        /* Style de la boîte des Mentions Légales */
+        /* Style étendu pour accueillir la confidentialité et les conditions */
         .legal-modal-card {
             background-color: var(--card-bg);
             border: 1px solid var(--section-border);
             width: 90%;
-            max-width: 650px;
-            max-height: 75vh;
+            max-width: 700px;
+            max-height: 80vh;
             padding: 35px;
             overflow-y: auto;
             text-align: left;
             color: var(--text-main);
-            border-radius: 8px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .legal-modal-card h2 { color: var(--apple-blue); font-size: 1.6rem; margin-bottom: 20px; text-transform: uppercase; }
-        .legal-modal-card h3 { font-size: 1.1rem; margin: 20px 0 8px 0; color: var(--text-main); border-bottom: 1px solid var(--section-border); padding-bottom: 4px; }
+        .legal-modal-card h2 { color: var(--apple-blue); font-size: 1.6rem; margin-bottom: 20px; text-transform: uppercase; border-bottom: 2px solid var(--apple-blue); padding-bottom: 10px; }
+        .legal-modal-card h3 { font-size: 1.1rem; margin: 25px 0 10px 0; color: var(--text-main); border-bottom: 1px solid var(--section-border); padding-bottom: 4px; text-transform: uppercase; font-weight: 600; }
         .legal-modal-card p, .legal-modal-card ul { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
         .legal-modal-card ul { padding-left: 20px; margin-top: 5px; }
 
@@ -443,6 +444,67 @@
         }
         .contact-link:hover { text-decoration: underline; }
 
+        /* --- BANDEAU COOKIES DESIGN --- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            width: 90%;
+            max-width: 480px;
+            background-color: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--section-border);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cookie-banner.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        .cookie-text {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+        .cookie-text a {
+            color: var(--apple-blue);
+            text-decoration: none;
+        }
+        .cookie-text a:hover { text-decoration: underline; }
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .cookie-btn-accept {
+            background-color: var(--apple-blue);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            flex: 1;
+        }
+        .cookie-btn-accept:hover { background-color: #0077ed; }
+        .cookie-btn-deny {
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--section-border);
+            padding: 10px 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .cookie-btn-deny:hover { color: var(--text-main); border-color: var(--text-secondary); }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .blue-title { font-size: 1.7rem; }
@@ -453,6 +515,7 @@
             .pricing-grid { grid-template-columns: 1fr; gap: 10px; overflow-y: auto; max-height: 50vh; }
             .pricing-card { min-height: auto; padding: 20px; }
             .legal-modal-card { padding: 20px; width: 95%; }
+            .cookie-banner { width: 95%; bottom: 10px; }
         }
     </style>
 </head>
@@ -568,10 +631,10 @@
         </div>
     </div>
 
-    <!-- Écran 4 : Témoignages -->
+    <!-- Écran 4 : CE QUE DISENT NOS CLIENTS -->
     <div id="testimonials-section" class="section">
         <div class="section-container">
-            <h2 class="blue-title">Témoignages</h2>
+            <h2 class="blue-title">CE QUE DISENT NOS CLIENTS</h2>
             <div class="marquee-container">
                 <div class="marquee-track">
                     <div class="testimonial-card">
@@ -664,44 +727,69 @@
             <center>
                 <p class="footer-text">
                     © 2026 BRK Creative. Tous droits réservés.
-                    <a class="legal-link" id="openLegal">Mentions Légales</a>
+                    <a class="legal-link" id="openLegal">Mentions Légales & Politiques</a>
                 </p>
             </center>
         </div>
     </div>
 
-    <!-- Lightbox Unique pour Médias ET Mentions Légales -->
+    <!-- Lightbox Unique pour Médias ET Documents Légaux -->
     <div class="lightbox" id="lightboxView">
         <span class="lightbox-close" id="lightboxClose">&times;</span>
         <div id="lightboxMediaContainer"></div>
     </div>
 
-    <!-- Conteneur masqué des Mentions Légales (Injecté via JS dans la Lightbox au clic) -->
+    <!-- Bandeau Cookies -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-text">
+            En naviguant sur <strong>BRK Creative</strong>, vous acceptez l’utilisation de cookies fonctionnels nécessaires à l'optimisation visuelle et à la fluidité du site. Consultez notre <a href="#" id="cookiePolicyLink">Politique de Confidentialité</a>.
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn-deny" id="cookieDeny">Refuser</button>
+            <button class="cookie-btn-accept" id="cookieAccept">Accepter</button>
+        </div>
+    </div>
+
+    <!-- Conteneur masqué des Mentions Légales, CGU, Confidentialité et Cookies -->
     <div id="legalTemplate" style="display: none;">
         <div class="legal-modal-card">
-            <h2>Mentions Légales</h2>
+            <h2>Mentions Légales & Conditions Générales</h2>
             <p><strong>BRK Creative</strong><br>Studio de création audiovisuelle et design graphique<br>Libreville, Gabon</p>
             
-            <h3>Propriétaire du site</h3>
+            <h3>1. Propriétaire & Éditeur</h3>
             <p>Eden (BRK Creative)<br>Email : studiowarrior36@gmail.com</p>
             
-            <h3>Hébergement</h3>
+            <h3>2. Hébergement</h3>
             <p>Le site est hébergé par GitHub Pages<br>GitHub, Inc.<br>88 Colin P. Kelly Jr Street, San Francisco, CA 94107, USA<br>Site : https://pages.github.com</p>
             
-            <h3>1. Propriété intellectuelle</h3>
-            <p>L’ensemble du contenu présent sur ce site (textes, images, vidéos, logos, créations graphiques, animations, etc.) est la propriété exclusive de BRK Creative, sauf mention contraire. Toute reproduction, modification, distribution ou exploitation sans autorisation préalable est strictement interdite.</p>
+            <h3>3. Conditions Générales d’Utilisation (CGU)</h3>
+            <p>L’accès et l’utilisation de ce portfolio / site vitrine implique l’acceptation pleine et entière des conditions suivantes :</p>
+            <ul>
+                <li>Le site est accessible gratuitement à tout utilisateur disposant d'un accès à internet.</li>
+                <li>L’utilisateur s’engage à ne pas perturber le bon fonctionnement du site ou à tenter d'accéder aux fichiers sources de manière malveillante.</li>
+                <li>BRK Creative s'efforce de maintenir le site fluide, mais ne peut être tenu responsable des pannes de réseau ou d'incompatibilités techniques d'affichage.</li>
+            </ul>
+
+            <h3>4. Propriété intellectuelle</h3>
+            <p>L’ensemble du contenu présent sur ce site (textes, images, vidéos, logos, créations graphiques, animations, etc.) est la propriété exclusive de BRK Creative, sauf mention contraire. Toute reproduction, modification, distribution ou exploitation sans autorisation écrite préalable est strictement interdite.</p>
             
-            <h3>2. Responsabilité</h3>
-            <p>BRK Creative s’efforce de fournir des informations fiables et à jour. Cependant, le studio ne peut être tenu responsable d’erreurs ou omissions, d’un mauvais affichage du site, ou de l’utilisation faite des contenus par les visiteurs.</p>
-            
-            <h3>3. Données personnelles</h3>
-            <p>Ce site ne collecte aucune donnée personnelle sans consentement. Si un formulaire ou un lien de contact est utilisé, les informations transmises ne sont utilisées que pour répondre aux demandes et ne sont jamais revendues. Vous pouvez demander la suppression de vos informations en écrivant à : studiowarrior36@gmail.com.</p>
-            
-            <h3>4. Liens externes</h3>
-            <p>Le site peut contenir des liens vers d’autres plateformes. BRK Creative n’est pas responsable du contenu de ces sites tiers.</p>
-            
-            <h3>5. Conditions d’utilisation</h3>
-            <p>En naviguant sur ce site, vous acceptez les présentes mentions légales. Elles peuvent être modifiées à tout moment sans préavis.</p>
+            <h3>5. Politique de Confidentialité</h3>
+            <p>BRK Creative accorde une importance primordiale au respect de votre vie privée :</p>
+            <ul>
+                <li><strong>Collecte des données :</strong> Ce site ne requiert aucune inscription obligatoire et ne collecte aucune donnée personnelle nominative en tâche de fond.</li>
+                <li><strong>Formulaire et contact :</strong> Si vous nous contactez par email, votre adresse n'est utilisée que dans le cadre strict de l'échange professionnel (établissement de devis, collaborations) et ne sera jamais partagée, cédée ou vendue à des tiers.</li>
+                <li><strong>Vos droits :</strong> Vous disposez d’un droit d’accès, de modification et de suppression de vos informations en écrivant simplement à : studiowarrior36@gmail.com.</li>
+            </ul>
+
+            <h3>6. Politique relative aux Cookies</h3>
+            <p>Ce site utilise uniquement des cookies dits techniques et essentiels pour mémoriser vos préférences d'affichage (comme le mode sombre ou clair) et assurer le bon fonctionnement du défilement magnétique.</p>
+            <ul>
+                <li>Aucun cookie tiers à but publicitaire ou de tracking commercial n'est implanté sur ce site.</li>
+                <li>Le bandeau d’acceptation vous permet de valider leur usage. Vous pouvez configurer ou bloquer ces cookies à tout moment via les paramètres de votre navigateur web.</li>
+            </ul>
+
+            <h3>7. Modifications des présentes clauses</h3>
+            <p>BRK Creative se réserve le droit de modifier ces mentions, CGU et politiques à tout moment afin de rester conforme aux évolutions légales et techniques. Nous vous invitons à les consulter régulièrement.</p>
         </div>
     </div>
 
@@ -753,11 +841,13 @@
             });
         });
 
-        // Ouverture exclusive des Mentions Légales dans la même interface
-        openLegal.addEventListener('click', () => {
+        // Fonction pour ouvrir les mentions légales
+        function triggerLegalView() {
             mediaContainer.innerHTML = legalTemplate.innerHTML;
             lightbox.classList.add('active');
-        });
+        }
+
+        openLegal.addEventListener('click', triggerLegalView);
 
         function closeLightbox() {
             lightbox.classList.remove('active');
@@ -765,6 +855,36 @@
         }
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+        // --- GESTION DU BANDEAU COOKIES ---
+        const cookieBanner = document.getElementById('cookieBanner');
+        const cookieAccept = document.getElementById('cookieAccept');
+        const cookieDeny = document.getElementById('cookieDeny');
+        const cookiePolicyLink = document.getElementById('cookiePolicyLink');
+
+        // Affichage temporisé du bandeau si le choix n'a pas encore été fait
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('brk_cookies_accepted')) {
+                setTimeout(() => {
+                    cookieBanner.classList.add('show');
+                }, 1200);
+            }
+        });
+
+        cookieAccept.addEventListener('click', () => {
+            localStorage.setItem('brk_cookies_accepted', 'true');
+            cookieBanner.classList.remove('show');
+        });
+
+        cookieDeny.addEventListener('click', () => {
+            localStorage.setItem('brk_cookies_accepted', 'false');
+            cookieBanner.classList.remove('show');
+        });
+
+        cookiePolicyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            triggerLegalView();
+        });
     </script>
 </body>
 </html>
