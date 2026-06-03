@@ -74,14 +74,14 @@
             align-items: center;
             text-align: center;
             padding: 60px 20px;
-            background: var(--bg-color); /* Utilisation du noir pur par défaut */
+            background: var(--bg-color);
         }
 
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
             letter-spacing: -0.015em;
-            color: var(--text-main); /* Repasse en blanc automatique sur fond noir */
+            color: var(--text-main);
             margin-bottom: 10px;
         }
 
@@ -92,7 +92,6 @@
             letter-spacing: 0.004em;
         }
 
-        /* En mode Light, l'en-tête s'adaptera proprement en blanc uni aussi */
         [data-theme="light"] .hero {
             background: var(--bg-color);
         }
@@ -265,20 +264,24 @@
 
     <button class="theme-toggle-btn" id="themeSlider">🌙</button>
 
+    <!-- Section Hero -->
     <div class="hero">
         <h1>BRK Creative</h1>
         <p>Créer pour inspirer</p>
     </div>
 
+    <!-- Section Présentation -->
     <div id="services-section" class="section">
         <h2>Nos Services</h2>
         <p class="intro-text">Nous créons des expériences visuelles uniques, inspirées par le minimalisme et la puissance du design moderne.</p>
     </div>
 
+    <!-- Section Portfolio Global -->
     <div id="portfolio-section" class="section">
         <h2>Créations</h2>
         <p class="intro-text">Découvrez nos univers artistiques à travers nos productions vidéos et nos designs fixes.</p>
         
+        <!-- ================= SOUS-PARTIE 1 : VIDÉOS ================= -->
         <h3 class="sub-part-title">Projets Vidéos</h3>
         
         <div class="portfolio-grid">
@@ -327,14 +330,16 @@
             <button class="cta-button" id="loadMoreBtn">Découvrir nos créations</button>
         </div>
 
+        <!-- ================= SOUS-PARTIE 2 : IMAGES / GRAPHISME ================= -->
         <h3 class="sub-part-title">Concept Arts & Designs</h3>
         
         <div class="portfolio-grid">
+            <!-- Première image liée avec la bonne source -->
             <div class="portfolio-card">
                 <div class="media-wrapper">
-                    <img src="phrase2.png" alt="Rendu 3D">
+                    <img src="Phrase 2.png" alt="Création BRK Creative">
                 </div>
-                <div class="card-info"><h4>Rendu 3D Raymond</h4><p>Modélisation & Éclairage</p></div>
+                <div class="card-info"><h4>Design Visuel</h4><p>Concept Art & Graphisme</p></div>
             </div>
 
             <div class="portfolio-card">
@@ -354,6 +359,7 @@
 
     </div>
 
+    <!-- Section Contact -->
     <div id="contact-section" class="section">
         <h2>Contactez-nous</h2>
         <p>Envoyez-nous un message pour collaborer sur vos projets créatifs.</p>
