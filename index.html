@@ -40,7 +40,7 @@
             line-height: 1.5;
         }
 
-        /* --- BOUTON ICONE UNIQUE (Style Circulaire Minimaliste) --- */
+        /* --- BOUTON ICONE UNIQUE --- */
         .theme-toggle-btn {
             position: fixed;
             top: 20px;
@@ -48,9 +48,9 @@
             background-color: var(--card-bg);
             border: 1px solid var(--section-border);
             color: var(--text-main);
-            width: 44px;  /* Largeur fixe pour faire un cercle parfait */
-            height: 44px; /* Hauteur fixe */
-            border-radius: 50%; /* Arrondi parfait */
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
             cursor: pointer;
             font-size: 1.2rem;
             display: flex;
@@ -65,7 +65,7 @@
             transform: scale(1.05);
         }
 
-        /* --- HERO SECTION AVEC DÉGRADÉ BLANC/NOIR --- */
+        /* --- HERO SECTION (Noir absolu uni) --- */
         .hero {
             min-height: 80vh;
             display: flex;
@@ -74,29 +74,27 @@
             align-items: center;
             text-align: center;
             padding: 60px 20px;
-            background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 30%, #000000 100%);
+            background: var(--bg-color); /* Utilisation du noir pur par défaut */
         }
 
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
             letter-spacing: -0.015em;
-            color: #1d1d1f; 
+            color: var(--text-main); /* Repasse en blanc automatique sur fond noir */
             margin-bottom: 10px;
         }
 
         .hero p {
             font-size: 1.5rem;
             font-weight: 400;
-            color: #515154; 
+            color: var(--text-secondary); 
             letter-spacing: 0.004em;
         }
 
+        /* En mode Light, l'en-tête s'adaptera proprement en blanc uni aussi */
         [data-theme="light"] .hero {
-            background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
-        }
-        [data-theme="light"] .hero p {
-            color: #6e6e73;
+            background: var(--bg-color);
         }
 
         /* --- STRUCTURE SECTIONS --- */
@@ -119,7 +117,17 @@
             margin-bottom: 20px;
         }
 
-        .section p {
+        .section h3.sub-part-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin: 50px 0 20px 0;
+            text-align: left;
+            border-left: 4px solid #0071e3;
+            padding-left: 15px;
+        }
+
+        .section p.intro-text {
             font-size: 1.15rem;
             color: var(--text-secondary);
             max-width: 600px;
@@ -127,8 +135,8 @@
             line-height: 1.6;
         }
 
-        /* --- GRILLE VIDÉO --- */
-        .video-grid {
+        /* --- GRILLES (VIDÉOS & IMAGES) --- */
+        .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
@@ -150,7 +158,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .video-card {
+        /* --- CARTES PORTFOLIO --- */
+        .portfolio-card {
             background-color: var(--card-bg);
             border-radius: 18px;
             overflow: hidden;
@@ -158,44 +167,47 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .video-card:hover {
+        .portfolio-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 113, 227, 0.2);
         }
 
-        .video-wrapper {
+        .media-wrapper {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             background-color: #000;
+            overflow: hidden;
         }
 
-        .video-wrapper video {
+        .media-wrapper video,
+        .media-wrapper img {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             border: none;
+            object-fit: cover;
         }
 
-        .video-info {
+        .card-info {
             padding: 20px;
             text-align: left;
         }
 
-        .video-info h3 {
+        .card-info h4 {
             font-size: 1.25rem;
             color: var(--text-main);
             margin-bottom: 5px;
             font-weight: 600;
         }
 
-        .video-info p {
+        .card-info p {
             font-size: 0.95rem;
             color: var(--text-secondary);
             margin: 0;
         }
 
-        /* --- BOUTONS --- */
+        /* --- BOUTONS STYLE APPLE --- */
         .cta-container {
             display: block;
             width: 100%;
@@ -245,7 +257,7 @@
             .hero p { font-size: 1.2rem; }
             .section h2 { font-size: 2rem; }
             .section { padding: 60px 20px; }
-            .video-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -260,58 +272,86 @@
 
     <div id="services-section" class="section">
         <h2>Nos Services</h2>
-        <p>Nous créons des expériences visuelles uniques, inspirées par le minimalisme et la puissance du design moderne.</p>
+        <p class="intro-text">Nous créons des expériences visuelles uniques, inspirées par le minimalisme et la puissance du design moderne.</p>
     </div>
 
     <div id="portfolio-section" class="section">
         <h2>Créations</h2>
-        <p>Découvrez une sélection de nos derniers projets en réalisation, motion design et effets visuels.</p>
+        <p class="intro-text">Découvrez nos univers artistiques à travers nos productions vidéos et nos designs fixes.</p>
         
-        <div class="video-grid">
-            <div class="video-card">
-                <div class="video-wrapper">
+        <h3 class="sub-part-title">Projets Vidéos</h3>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="media-wrapper">
                     <video controls><source src="video1.mp4" type="video/mp4"></video>
                 </div>
-                <div class="video-info"><h3>Projet Principal 1</h3><p>3D Animation</p></div>
+                <div class="card-info"><h4>Projet Vidéo 1</h4><p>Animation 3D</p></div>
             </div>
-            <div class="video-card">
-                <div class="video-wrapper">
+            <div class="portfolio-card">
+                <div class="media-wrapper">
                     <video controls><source src="video2.mp4" type="video/mp4"></video>
                 </div>
-                <div class="video-info"><h3>Projet Principal 2</h3><p>Motion Design</p></div>
+                <div class="card-info"><h4>Projet Vidéo 2</h4><p>Motion Design</p></div>
             </div>
-            <div class="video-card">
-                <div class="video-wrapper">
+            <div class="portfolio-card">
+                <div class="media-wrapper">
                     <video controls><source src="video3.mp4" type="video/mp4"></video>
                 </div>
-                <div class="video-info"><h3>Projet Principal 3</h3><p>VFX Pro</p></div>
+                <div class="card-info"><h4>Projet Vidéo 3</h4><p>Post-Production</p></div>
             </div>
         </div>
 
-        <div class="video-grid hidden-videos" id="moreVideosContainer">
-            <div class="video-card">
-                <div class="video-wrapper">
+        <div class="portfolio-grid hidden-videos" id="moreVideosContainer">
+            <div class="portfolio-card">
+                <div class="media-wrapper">
                     <video controls><source src="video4.mp4" type="video/mp4"></video>
                 </div>
-                <div class="video-info"><h3>Projet Supplémentaire 1</h3><p>Montage Vidéo</p></div>
+                <div class="card-info"><h4>Projet Vidéo 4</h4><p>VFX Pro</p></div>
             </div>
-            <div class="video-card">
-                <div class="video-wrapper">
+            <div class="portfolio-card">
+                <div class="media-wrapper">
                     <video controls><source src="video5.mp4" type="video/mp4"></video>
                 </div>
-                <div class="video-info"><h3>Projet Supplémentaire 2</h3><p>Direction Artistique</p></div>
+                <div class="card-info"><h4>Projet Vidéo 5</h4><p>Montage Rythmique</p></div>
             </div>
-            <div class="video-card">
-                <div class="video-wrapper">
+            <div class="portfolio-card">
+                <div class="media-wrapper">
                     <video controls><source src="video6.mp4" type="video/mp4"></video>
                 </div>
-                <div class="video-info"><h3>Projet Supplémentaire 3</h3><p>Production 3D</p></div>
+                <div class="card-info"><h4>Projet Vidéo 6</h4><p>Court-métrage</p></div>
             </div>
         </div>
 
         <div class="cta-container">
             <button class="cta-button" id="loadMoreBtn">Découvrir nos créations</button>
         </div>
+
+        <h3 class="sub-part-title">Concept Arts & Designs</h3>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="media-wrapper">
+                    <img src="image1.jpg" alt="Rendu 3D">
+                </div>
+                <div class="card-info"><h4>Rendu 3D Raymond</h4><p>Modélisation & Éclairage</p></div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="media-wrapper">
+                    <img src="image2.jpg" alt="Design Graphique">
+                </div>
+                <div class="card-info"><h4>Identité Visuelle</h4><p>Branding & Logo Design</p></div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="media-wrapper">
+                    <img src="image3.jpg" alt="Moodboard">
+                </div>
+                <div class="card-info"><h4>Concept Art</h4><p>Compositing Digital</p></div>
+            </div>
+        </div>
+
     </div>
 
     <div id="contact-section" class="section">
@@ -328,12 +368,11 @@
         const themeSlider = document.getElementById('themeSlider');
         const currentTheme = localStorage.getItem('theme') || 'dark';
 
-        // Appliquer le thème et l'icône au chargement
         if (currentTheme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
-            themeSlider.textContent = "☀️"; // Soleil si le mode est clair
+            themeSlider.textContent = "☀️";
         } else {
-            themeSlider.textContent = "🌙"; // Lune si le mode est sombre
+            themeSlider.textContent = "🌙";
         }
 
         themeSlider.addEventListener('click', () => {
