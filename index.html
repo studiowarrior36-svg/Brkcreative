@@ -6,7 +6,7 @@
     <title>BRK Creative</title>
     <style>
         /* ==========================================
-           1. RESET & VARIABLE DE THÈMES
+           1. RESET & VARIABLES (THÈME SOMBRE FIXE)
            ========================================== */
         * {
             margin: 0;
@@ -28,20 +28,6 @@
             --bleu-hover: #0056b3;
             --bordure: rgba(255, 255, 255, 0.08);
             --shadow-color: rgba(0, 0, 0, 0.5);
-        }
-
-        [data-theme="light"] {
-            --bg-principal: #f4f7fc;
-            --bg-navbar: rgba(244, 247, 252, 0.95);
-            --bg-carte: #ffffff;
-            --bg-tarifs: #ebf1fa;
-            --texte-principal: #1a202c;
-            --texte-secondaire: #4a5568;
-            --texte-muet: #718096;
-            --bleu-accent: #0066cc;
-            --bleu-hover: #004499;
-            --bordure: rgba(0, 0, 0, 0.08);
-            --shadow-color: rgba(0, 0, 0, 0.1);
         }
 
         body {
@@ -94,17 +80,6 @@
 
         .dropdown-trigger:hover {
             background-color: rgba(0, 123, 255, 0.1);
-        }
-
-        .theme-toggle-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--texte-principal);
         }
 
         .dropdown-menu-pays {
@@ -207,7 +182,7 @@
             display: block;
         }
 
-        /* --- TARIFS STYLE CANAL+ --- */
+        /* --- TARIFS --- */
         .tarifs-section {
             background-color: var(--bg-tarifs);
             padding: 100px 10%;
@@ -446,7 +421,6 @@
                     </div>
                 </div>
             </div>
-            <button class="theme-toggle-btn" onclick="toggleTheme()" id="theme-icon">🌙</button>
         </div>
     </header>
 
@@ -525,6 +499,7 @@
         </div>
     </footer>
 
+    <!-- LOGIQUE DE DICTIONNAIRE MULTILINGUE (FR / EN / ES) -->
     <script>
         const translations = {
             fr: {
@@ -570,30 +545,39 @@
                 r3: "Art Director",
                 footerCopy: "© 2026 BRK Creative. All rights reserved.",
                 footerLegal: "Legal Notices"
+            },
+            es: {
+                aboutSub: "SOBRE NOSOTROS",
+                aboutTitle: "Trascendemos sus ideas en obras maestras visuales",
+                aboutDesc: "BRK Creative es un estudio especializado en postproducción de alta calidad, Motion Design de impacto y animación 3D. Destacamos su marca a través de un riguroso conocimiento técnico y una creatividad sin límites.",
+                tarifsTitle: "TARIFAS",
+                tarifsSub: "Soluciones claras y transparentes adaptadas a sus ambiciones.",
+                opt1Title: "OPCIÓN 1: PROFESIONAL",
+                opt1Desc: "Las tarifas varían según la complejidad y las necesidades específicas del proyecto. Póngase en contacto con nuestro equipo para diseñar un presupuesto totalmente a medida.",
+                opt2Title: "OPCIÓN 2: BUSINESS PREMIUM",
+                opt2Desc: "Soporte completo, despliegue de identidad visual integral, animaciones gráficas avanzadas y entregas prioritarias con seguimiento personalizado.",
+                badge: "RECOMENDADO",
+                btn: "Solicitar presupuesto",
+                testiTitle: "LO QUE DICEN NUESTROS CLIENTES",
+                q1: '"Un trabajo de postproducción de una calidad excepcional. El ritmo del montaje trascendió nuestro proyecto de principio a fin."',
+                r1: "Director de Cine Independiente",
+                q2: '"El equipo captó instantáneamente la esencia misma de nuestra marca. El resultado visual final supera con creces nuestras expectativas."',
+                r2: "Productor Independiente",
+                q3: '"Profesionalidad, capacidad de respuesta constante y total fluidez en los intercambios. Los plazos se cumplieron estrictamente."',
+                r3: "Directora Artística",
+                footerCopy: "© 2026 BRK Creative. Todos los derechos reservados.",
+                footerLegal: "Avisos Legales"
             }
         };
 
-        function toggleTheme() {
-            const body = document.documentElement;
-            const currentTheme = body.getAttribute('data-theme');
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (currentTheme === 'light') {
-                body.removeAttribute('data-theme');
-                themeIcon.textContent = '🌙';
-            } else {
-                body.setAttribute('data-theme', 'light');
-                themeIcon.textContent = '☀️';
-            }
-        }
-
         function changeCountry(countryName, langCode) {
-            // Mettre à jour l'étiquette pays du bouton
+            // Mettre à jour le texte du bouton principal
             document.getElementById('country-label').textContent = countryName;
             
-            // Appliquer la traduction si elle existe
+            // Sélectionner la langue (par défaut anglais si non trouvée)
             const data = translations[langCode] || translations['en']; 
             
+            // Mettre à jour dynamiquement le DOM
             document.getElementById('trans-about-sub').textContent = data.aboutSub;
             document.getElementById('trans-about-title').textContent = data.aboutTitle;
             document.getElementById('trans-about-desc').textContent = data.aboutDesc;
