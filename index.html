@@ -6,7 +6,7 @@
     <title>BRK Creative</title>
     <style>
         /* ==========================================
-           1. CODE CSS (STYLE GÉNÉRAL & RESET)
+           1. RESET & VARIABLE DE THÈMES
            ========================================== */
         * {
             margin: 0;
@@ -16,7 +16,6 @@
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Variables pour gérer facilement les couleurs des modes Sombre / Lumière */
         :root {
             --bg-principal: #050b14;
             --bg-navbar: rgba(5, 11, 20, 0.95);
@@ -51,7 +50,7 @@
             overflow-x: hidden;
         }
 
-        /* --- NAVBAR & SÉLECTEUR DE PAYS / THÈME --- */
+        /* --- NAVBAR & SELECTION PAYS --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -80,7 +79,6 @@
             position: relative;
         }
 
-        /* Bouton Pays & Thème unifié et modifiable graphiquement */
         .dropdown-trigger {
             background: transparent;
             color: var(--texte-principal);
@@ -109,7 +107,6 @@
             color: var(--texte-principal);
         }
 
-        /* Fenêtre des pays adaptative sur Edge réduit */
         .dropdown-menu-pays {
             display: none;
             position: absolute;
@@ -120,12 +117,10 @@
             border-radius: 8px;
             padding: 25px;
             box-shadow: 0 15px 40px var(--shadow-color);
-            
             width: max-content;
-            max-width: 90vw; 
-            max-height: 80vh; 
+            max-width: 90vw;
+            max-height: 80vh;
             overflow-y: auto;
-            
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 25px;
         }
@@ -147,6 +142,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             margin-bottom: 8px;
+            cursor: pointer;
         }
 
         .menu-col a:hover {
@@ -211,7 +207,7 @@
             display: block;
         }
 
-        /* --- TARIFS STYLE CANAL+ --- */
+        /* --- TARIFS STYLE CANAL+ MODIFIÉ --- */
         .tarifs-section {
             background-color: var(--bg-tarifs);
             padding: 100px 10%;
@@ -227,11 +223,6 @@
         .tarifs-header h2 {
             font-size: 2.2rem;
             letter-spacing: 1px;
-        }
-
-        .tarifs-header p {
-            color: var(--texte-muet);
-            margin-top: 10px;
         }
 
         .tarifs-container {
@@ -252,12 +243,34 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .tarif-card:hover, .tarif-card.active-premium {
+        /* Masquage initial du badge pour éviter les conflits visuels */
+        .badge-premium {
+            position: absolute;
+            top: -12px;
+            left: 35px;
+            background-color: var(--bleu-accent);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Affichage dynamique uniquement au survol actif */
+        .tarif-card:hover {
             border-color: var(--bleu-accent);
             box-shadow: 0 20px 40px var(--shadow-color);
             transform: translateY(-8px);
+        }
+
+        .tarif-card.active-premium:hover .badge-premium {
+            opacity: 1;
         }
 
         .tarif-card h3 {
@@ -271,19 +284,6 @@
             font-size: 0.95rem;
             line-height: 1.6;
             flex-grow: 1;
-        }
-
-        .badge-premium {
-            position: absolute;
-            top: -12px;
-            left: 35px;
-            background-color: var(--bleu-accent);
-            color: white;
-            font-size: 0.75rem;
-            font-weight: bold;
-            padding: 4px 14px;
-            border-radius: 20px;
-            letter-spacing: 1px;
         }
 
         .btn-canal {
@@ -303,7 +303,7 @@
             background-color: var(--bleu-hover);
         }
 
-        /* --- TÉMOIGNAGES --- */
+        /* --- TÉMOIGNAGES AVEC PAUSE HOVER --- */
         .testimonials-section {
             padding: 100px 10%;
             text-align: center;
@@ -335,6 +335,12 @@
             border-radius: 12px;
             text-align: left;
             box-shadow: 0 10px 30px var(--shadow-color);
+            cursor: pointer;
+        }
+
+        /* Condition Hover : Arrête l'animation CSS immédiatement au survol */
+        .testimonials-container:hover .testimonial-card {
+            animation-play-state: paused !important;
         }
 
         .testimonial-card .quote {
@@ -358,7 +364,7 @@
             margin-top: 4px;
         }
 
-        /* --- ANIMATIONS DE DÉFILEMENT VERTICAL --- */
+        /* --- ANIMATIONS --- */
         @keyframes scrollUpAnimation {
             0% { transform: translateY(450px); }
             100% { transform: translateY(-550px); }
@@ -376,7 +382,7 @@
         .testimonials-container .testimonial-card:nth-child(2) { left: 38%; }
         .testimonials-container .testimonial-card:nth-child(3) { left: 70%; }
 
-        /* --- FOOTER COHÉRENT ET ALIGNÉ --- */
+        /* --- FOOTER --- */
         .site-footer {
             display: flex;
             justify-content: space-between;
@@ -397,37 +403,13 @@
             color: var(--bleu-accent);
         }
 
-        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 968px) {
-            .presentation-section {
-                flex-direction: column;
-                height: auto;
-                padding: 40px 5%;
-            }
-            .presentation-text, .presentation-media-scroller {
-                width: 100%;
-                margin-bottom: 40px;
-            }
+            .presentation-section { flex-direction: column; height: auto; padding: 40px 5%; }
+            .presentation-text, .presentation-media-scroller { width: 100%; margin-bottom: 40px; }
             .presentation-media-scroller { height: 300px; }
-            .testimonials-container {
-                height: auto;
-                flex-direction: column;
-                align-items: center;
-                overflow: visible;
-                mask-image: none;
-                -webkit-mask-image: none;
-            }
-            .testimonials-container .testimonial-card {
-                position: relative;
-                left: unset !important;
-                margin-bottom: 20px;
-                animation: none; 
-            }
-            .site-footer {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
+            .testimonials-container { height: auto; flex-direction: column; align-items: center; overflow: visible; mask-image: none; -webkit-mask-image: none; }
+            .testimonials-container .testimonial-card { position: relative; left: unset !important; margin-bottom: 20px; animation: none !important; }
+            .site-footer { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
@@ -438,33 +420,32 @@
         <div class="nav-controls">
             <div class="dropdown-pays-container">
                 <button class="dropdown-trigger" id="country-label">Gabon</button>
-                
                 <div class="dropdown-menu-pays">
                     <div class="menu-col">
                         <h4>AFRIQUE</h4>
-                        <a href="#" onclick="changeCountry('Gabon')">Gabon</a>
-                        <a href="#" onclick="changeCountry('Côte d\'Ivoire')">Côte d'Ivoire</a>
-                        <a href="#" onclick="changeCountry('Sénégal')">Sénégal</a>
-                        <a href="#" onclick="changeCountry('Cameroun')">Cameroun</a>
-                        <a href="#" onclick="changeCountry('Congo')">Congo</a>
+                        <a onclick="changeCountry('Gabon')">Gabon</a>
+                        <a onclick="changeCountry('Côte d\'Ivoire')">Côte d'Ivoire</a>
+                        <a onclick="changeCountry('Sénégal')">Sénégal</a>
+                        <a onclick="changeCountry('Cameroun')">Cameroun</a>
+                        <a onclick="changeCountry('Congo')">Congo</a>
                     </div>
                     <div class="menu-col">
                         <h4>AMÉRIQUES</h4>
-                        <a href="#" onclick="changeCountry('États-Unis')">États-Unis</a>
-                        <a href="#" onclick="changeCountry('Canada')">Canada</a>
-                        <a href="#" onclick="changeCountry('Mexique')">Mexique</a>
+                        <a onclick="changeCountry('États-Unis')">États-Unis</a>
+                        <a onclick="changeCountry('Canada')">Canada</a>
+                        <a onclick="changeCountry('Mexique')">Mexique</a>
                     </div>
                     <div class="menu-col">
                         <h4>EUROPE</h4>
-                        <a href="#" onclick="changeCountry('France')">France</a>
-                        <a href="#" onclick="changeCountry('Belgique')">Belgique</a>
-                        <a href="#" onclick="changeCountry('Suisse')">Suisse</a>
+                        <a onclick="changeCountry('France')">France</a>
+                        <a onclick="changeCountry('Belgique')">Belgique</a>
+                        <a onclick="changeCountry('Suisse')">Suisse</a>
                     </div>
                     <div class="menu-col">
                         <h4>ASIE / MOYEN-ORIENT</h4>
-                        <a href="#" onclick="changeCountry('Chine')">Chine</a>
-                        <a href="#" onclick="changeCountry('Singapour')">Singapour</a>
-                        <a href="#" onclick="changeCountry('Qatar')">Qatar</a>
+                        <a onclick="changeCountry('Chine')">Chine</a>
+                        <a onclick="changeCountry('Singapour')">Singapour</a>
+                        <a onclick="changeCountry('Qatar')">Qatar</a>
                     </div>
                 </div>
             </div>
@@ -505,6 +486,7 @@
                 <a href="#" class="btn-canal">Demander un devis</a>
             </div>
 
+            <!-- Ajout de la classe active-premium pour isoler le comportement du badge -->
             <div class="tarif-card active-premium">
                 <div class="badge-premium">CONSEILLÉ</div>
                 <h3>OPTION 2 : BUSINESS PREMIUM</h3>
@@ -563,6 +545,7 @@
         }
 
         function changeCountry(countryName) {
+            // Changement purement dynamique de l'élément sans rechargement de lien vide '#'
             document.getElementById('country-label').textContent = countryName;
         }
     </script>
