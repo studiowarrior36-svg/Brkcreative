@@ -55,7 +55,7 @@
             height: 100%;
         }
 
-        /* --- BARRE DE CONTRÔLES FIXE --- */
+        /* --- BARRE DE CONTRÔLES FIXE (HAUT DROITE) --- */
         .controls-container {
             position: fixed;
             top: 20px;
@@ -358,27 +358,6 @@
             width: 100%;
         }
 
-        /* --- FILTRE DYNAMIQUE PAYS / LANGUES (RENFORCEMENT) --- */
-        .utility-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
-            width: 100%;
-        }
-
-        .select-enhanced {
-            width: 100%;
-            background-color: var(--card-bg);
-            border: 1px solid var(--section-border);
-            color: var(--text-main);
-            padding: 12px;
-            border-radius: 8px;
-            outline: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
         /* --- TEMOIGNAGES --- */
         .marquee-container {
             width: 100%;
@@ -427,7 +406,50 @@
             text-align: center;
         }
 
-        .footer-text { margin-top: 30px; font-size: 0.8rem; color: var(--text-secondary); }
+        /* --- FOOTER SÉPARÉ (LOOK APPLE) --- */
+        .apple-footer-wrapper {
+            margin-top: 50px;
+            width: 100%;
+            border-top: 1px solid var(--section-border);
+            padding-top: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+        }
+
+        .footer-left-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-country-label {
+            font-size: 0.8rem; 
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .select-country-apple {
+            background: transparent;
+            border: none;
+            color: var(--apple-blue);
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            outline: none;
+            padding-right: 5px;
+        }
+        .select-country-apple:hover {
+            text-decoration: underline;
+        }
+
+        .footer-right-area {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
         .legal-link { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; margin-left: 15px; cursor: pointer; }
         .legal-link:hover { color: var(--apple-blue); text-decoration: underline; }
 
@@ -496,7 +518,7 @@
             .portfolio-card { width: 310px; height: 105px; }
             .media-wrapper { width: 120px; }
             .pricing-grid { grid-template-columns: 1fr; gap: 15px; }
-            .utility-grid { grid-template-columns: 1fr; }
+            .apple-footer-wrapper { flex-direction: column; gap: 15px; align-items: flex-start; text-align: left; }
         }
     </style>
 </head>
@@ -544,20 +566,6 @@
                             <p data-lang-fr="Motion Design" data-lang-en="Motion Design" data-lang-es="Diseño de Movimiento">Motion Design</p>
                         </div>
                     </div>
-                    <div class="portfolio-card" data-type="video" data-src="video1.mp4">
-                        <div class="media-wrapper"><div class="video-thumb-placeholder" style="background: #222;"></div><div class="video-play-icon">▶</div></div>
-                        <div class="card-info">
-                            <h4 data-lang-fr="Projet Vidéo 1" data-lang-en="Video Project 1" data-lang-es="Proyecto de Video 1">Projet Vidéo 1</h4>
-                            <p data-lang-fr="Animation 3D / Montage" data-lang-en="3D Animation / Editing" data-lang-es="Animación 3D / Edición">Animation 3D / Montage</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-card" data-type="video" data-src="video2.mp4">
-                        <div class="media-wrapper"><div class="video-thumb-placeholder" style="background: #222;"></div><div class="video-play-icon">▶</div></div>
-                        <div class="card-info">
-                            <h4 data-lang-fr="Projet Vidéo 2" data-lang-en="Video Project 2" data-lang-es="Proyecto de Video 2">Projet Vidéo 2</h4>
-                            <p data-lang-fr="Motion Design" data-lang-en="Motion Design" data-lang-es="Diseño de Movimiento">Motion Design</p>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -567,15 +575,8 @@
                     <div class="portfolio-card" data-type="image" data-src="Phrase 2.png">
                         <div class="media-wrapper"><img src="Phrase 2.png" alt="Conception Graphique"></div>
                         <div class="card-info">
-                            <h4 data-lang-fr="Conception Graphique" data-lang-en="Graphic Design" data-lang-es="Diseño Gráfico">Conception Graphique</h4>
+                            <h4 data-lang-fr="Conception Graphic" data-lang-en="Graphic Design" data-lang-es="Diseño Gráfico">Conception Graphique</h4>
                             <p data-lang-fr="Design Typographique & Concept Art" data-lang-en="Typography & Concept Art" data-lang-es="Diseño Tipográfico y Arte de Concepto">Design Typographique & Concept Art</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-card" data-type="image" data-src="image2.jpg">
-                        <div class="media-wrapper"><img src="image2.jpg" alt="Design Graphique"></div>
-                        <div class="card-info">
-                            <h4 data-lang-fr="Identité Visuelle" data-lang-en="Visual Identity" data-lang-es="Identidad Visual">Identité Visuelle</h4>
-                            <p data-lang-fr="Branding & Logo" data-lang-en="Branding & Logo" data-lang-es="Branding y Logotipo">Branding & Logo</p>
                         </div>
                     </div>
                 </div>
@@ -590,11 +591,11 @@
                 <div class="apple-slider-track">
                     <div class="apple-slide">
                         <h3 class="slide-title" data-lang-fr="L'art du Montage" data-lang-en="The Art of Editing" data-lang-es="El Arte de la Edición">L'art du Montage</h3>
-                        <p class="slide-text" data-lang-fr="Un rythme et une fluidité calibrés pour donner de l'impact à vos productions." data-lang-en="A rhythm and fluidity calibrated to give impact to your productions." data-lang-es="Un ritmo y una fluidez calibrados para dar impacto a tus producciones.">Un rythme et une fluidité calibrés pour donner de l'impact à vos productions.</p>
+                        <p class="slide-text" data-lang-fr="Un rythme et une fluidité calibrés pour donner de l'impact à vos productions.">Un rythme et une fluidité calibrés pour donner de l'impact à vos productions.</p>
                     </div>
                     <div class="apple-slide">
                         <h3 class="slide-title" data-lang-fr="Post-Production de pointe" data-lang-en="Advanced Post-Production" data-lang-es="Postproducción de Vanguardia">Post-Production de pointe</h3>
-                        <p class="slide-text" data-lang-fr="Incrustations VFX, masquages techniques et étalonnage précis pour sublimer vos images." data-lang-en="VFX compositing, technical masking and precise color grading to elevate your images." data-lang-es="Composición de VFX, enmascaramiento técnico y gradación de color precisa para mejorar tus imágenes.">Incrustations VFX, masquages techniques et étalonnage précis pour sublimer vos images.</p>
+                        <p class="slide-text" data-lang-fr="Incrustations VFX, masquages techniques et étalonnage précis pour sublimer vos images.">Incrustations VFX, masquages techniques et étalonnage précis pour sublimer vos images.</p>
                     </div>
                 </div>
             </div>
@@ -612,42 +613,22 @@
                         <span class="author-name">Lucas Mandji</span>
                         <span class="author-role-blue">Réalisateur Indépendant</span>
                     </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"La direction artistique pour nos animations 3D est tout simplement incroyable. Très à l'écoute."</p>
-                        <span class="author-name">Sarah B.</span>
-                        <span class="author-role-blue">Directrice Marketing</span>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Écran 5 : Grille des Tarifs & Localisation Globale -->
+    <!-- Écran 5 : Grille des Tarifs -->
     <div id="pricing-section" class="section">
         <div class="section-container">
-            <h2 class="blue-title" data-lang-fr="Tarifs & Localisation" data-lang-en="Pricing & Localization" data-lang-es="Precios y Localización">Tarifs & Localisation</h2>
+            <h2 class="blue-title" data-lang-fr="Tarifs" data-lang-en="Pricing" data-lang-es="Precios">Tarifs</h2>
+            <p class="intro-text" data-lang-fr="Des solutions nettes et transparentes adaptées à vos ambitions.">Des solutions nettes et transparentes adaptées à vos ambitions.</p>
             
-            <!-- SECTION ULTRA-RENFORCÉE : Sélecteurs de tous les pays et toutes les langues du monde -->
-            <div class="utility-grid">
-                <div>
-                    <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:5px;" data-lang-fr="Votre Pays (Monde entier) :" data-lang-en="Your Country (Worldwide) :" data-lang-es="Tu País (Mundo entero) :">Votre Pays (Monde entier) :</label>
-                    <select id="globalCountrySelect" class="select-enhanced">
-                        <!-- Généré dynamiquement par JS -->
-                    </select>
-                </div>
-                <div>
-                    <label style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:5px;" data-lang-fr="Toutes les Langues du Monde :" data-lang-en="All Languages of the World :" data-lang-es="Todos los Idiomas del Mundo :">Toutes les Langues du Monde :</label>
-                    <select id="globalLanguageSelect" class="select-enhanced">
-                        <!-- Généré dynamiquement par JS -->
-                    </select>
-                </div>
-            </div>
-
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <div>
                         <h3 data-lang-fr="Option 1 : Professionnelle (Milieu de gamme)" data-lang-en="Option 1: Professional (Mid-range)" data-lang-es="Opción 1: Profesional (Gama media)">Option 1 : Professionnelle (Milieu de gamme)</h3>
-                        <p class="pricing-description" data-lang-fr="Les tarifs varient selon la complexité et les besoins du projet. Contactez-nous pour un devis personnalisé." data-lang-en="Rates vary depending on the complexity and needs of the project. Contact us for a custom quote." data-lang-es="Las tarifas varían según la complejidad y las necesidades del proyecto. Contáctenos para un presupuesto personalizado.">Les tarifs varient selon la complexité et les besoins du projet. Contactez-nous pour un devis personnalisé.</p>
+                        <p class="pricing-description" data-lang-fr="Les tarifs varient selon la complexité et les besoins du projet. Contactez-nous pour un devis personnalisé.">Les tarifs varient selon la complexité et les besoins du projet. Contactez-nous pour un devis personnalisé.</p>
                     </div>
                     <a href="#contact-section" class="cta-button" data-lang-fr="Demander un devis" data-lang-en="Request a quote" data-lang-es="Solicitar presupuesto">Demander un devis</a>
                 </div>
@@ -655,7 +636,7 @@
                 <div class="pricing-card">
                     <div>
                         <h3 data-lang-fr="Option 2 : Premium (Haut de gamme)" data-lang-en="Option 2: Premium (High-end)" data-lang-es="Opción 2: Premium (Gama alta)">Option 2 : Premium (Haut de gamme)</h3>
-                        <p class="pricing-description" data-lang-fr="Chaque création est unique. Les prix sont établis sur mesure selon votre vision et vos exigences." data-lang-en="Each creation is unique. Prices are established tailored to your vision and requirements." data-lang-es="Cada creación es única. Los precios se establecen a la medida de su visión y requisitos.">Chaque création est unique. Les prix sont établis sur mesure selon votre vision et vos exigences.</p>
+                        <p class="pricing-description" data-lang-fr="Chaque création est unique. Les prix sont établis sur mesure selon votre vision et vos exigences.">Chaque création est unique. Les prix sont établis sur mesure selon votre vision et vos exigences.</p>
                     </div>
                     <a href="#contact-section" class="cta-button" data-lang-fr="Estimer mon projet" data-lang-en="Estimate my project" data-lang-es="Estimar mi proyecto">Estimer mon projet</a>
                 </div>
@@ -663,7 +644,7 @@
         </div>
     </div>
 
-    <!-- Écran 6 : À Propos -->
+    <!-- Écran 6 : À Propos & Footer Style Apple -->
     <div id="about-section" class="section">
         <div class="section-container">
             <h2 class="blue-title" data-lang-fr="À Propos" data-lang-en="About" data-lang-es="Sobre Nosotros">À Propos</h2>
@@ -675,12 +656,20 @@
                 <a href="mailto:studiowarrior36@gmail.com" class="contact-link" data-lang-fr="Collaborer avec nous &gt;" data-lang-en="Work with us &gt;" data-lang-es="Colabora con nosotros &gt;">Collaborer avec nous &gt;</a>
             </div>
 
-            <center>
-                <p class="footer-text">
+            <!-- FOOTER ULTRA-PREMIUM (STYLE APPLE AVEC SELECTION DU PAYS EN BAS A GAUCHE) -->
+            <div class="apple-footer-wrapper">
+                <div class="footer-left-area">
+                    <span class="footer-country-label" data-lang-fr="Votre Pays :" data-lang-en="Your Country:" data-lang-es="Tu País:">Votre Pays :</span>
+                    <select id="globalCountrySelect" class="select-country-apple">
+                        <!-- Les pays du monde sont injectés ici dynamiquement -->
+                    </select>
+                </div>
+                
+                <div class="footer-right-area">
                     © 2026 BRK Creative. <span data-lang-fr="Tous droits réservés." data-lang-en="All rights reserved." data-lang-es="Todos los derechos reservados.">Tous droits réservés.</span>
                     <a class="legal-link" id="openLegal" data-lang-fr="Mentions Légales" data-lang-en="Legal Notices" data-lang-es="Avis Legales">Mentions Légales</a>
-                </p>
-            </center>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -708,14 +697,13 @@
         </div>
     </div>
 
-    <!-- SCRIPT INTELLIGENT ET RENFORCÉ -->
     <script>
         // --- 1. CONFIGURATION TRADUCTION ---
         const langSelect = document.getElementById('langSelect');
         let defaultLang = localStorage.getItem('lang') || navigator.language.slice(0, 2) || 'fr';
         if (!['fr', 'en', 'es'].includes(defaultLang)) { defaultLang = 'fr'; }
 
-        function setLanguage(lang) {
+        function setLanguage(lang, updateCountryDropdown = true) {
             const elements = document.querySelectorAll('[data-lang-fr]');
             elements.forEach(el => {
                 const translatedText = el.getAttribute(`data-lang-${lang}`) || el.getAttribute('data-lang-fr');
@@ -731,59 +719,66 @@
             document.documentElement.lang = lang;
             localStorage.setItem('lang', lang);
             
-            // Re-génère dynamiquement les noms pays/langues selon la langue globale choisie !
-            populateGlobalLists(lang);
+            // Met à jour la liste des pays selon la langue courante (sans écraser la sélection)
+            if (updateCountryDropdown) {
+                populateGlobalCountries(lang);
+            }
         }
 
-        langSelect.addEventListener('change', (e) => { setLanguage(e.target.value); });
+        langSelect.addEventListener('change', (e) => { 
+            setLanguage(e.target.value, true); 
+        });
 
-        // --- 2. GENERATION DYNAMIQUE (TOUS LES PAYS ET TOUTES LES LANGUES DU MONDE) ---
-        function populateGlobalLists(currentLang) {
+        // --- 2. GENERATION DYNAMIQUE ET LOGIQUE AUTOMATIQUE DU SELECT PAYS ---
+        function populateGlobalCountries(currentLang) {
             const countrySelect = document.getElementById('globalCountrySelect');
-            const languageSelect = document.getElementById('globalLanguageSelect');
-            
             const savedSelectedCountry = countrySelect.value;
-            const savedSelectedLanguage = languageSelect.value;
-
             countrySelect.innerHTML = '';
-            languageSelect.innerHTML = '';
 
-            // Liste ISO standardisée complète des pays du monde (Codes Alpha-2)
+            // Liste internationale ISO des pays
             const countryCodes = ["AF","AX","AL","DZ","AS","AD","AO","AI","AQ","AG","AR","AM","AW","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ","BM","BT","BO","BQ","BA","BW","BV","BR","IO","BN","BG","BF","BI","CV","KH","CM","CA","KY","CF","TD","CL","CN","CX","CC","CO","KM","CD","CG","CK","CR","CI","HR","CU","CW","CY","CZ","DK","DJ","DM","DO","EC","EG","SV","GQ","ER","EE","SZ","ET","FK","FO","FJ","FI","FR","GF","PF","TF","GA","GM","GE","DE","GH","GI","GR","GL","GD","GP","GU","GT","GG","GN","GW","GY","HT","HM","VA","HN","HK","HU","IS","IN","ID","IR","IQ","IE","IM","IL","IT","JM","JP","JE","JO","KZ","KE","KI","KP","KR","KW","KG","LA","LV","LB","LS","LR","LY","LI","LT","LU","MO","MG","MW","MY","MV","ML","MT","MH","MQ","MR","MU","YT","MX","FM","MD","MC","MN","ME","MS","MA","MZ","MM","NA","NR","NP","NL","NC","NZ","NI","NE","NG","NU","NF","MP","NO","OM","PK","PW","PS","PA","PG","PY","PE","PH","PN","PL","PT","PR","QA","RE","RO","RU","RW","BL","SH","KN","LC","MF","PM","VC","WS","SM","ST","SA","SN","RS","SC","SL","SG","SX","SK","SI","SB","SO","ZA","GS","SS","ES","LK","SD","SR","SJ","SE","CH","SY","TW","TJ","TZ","TH","TL","TG","TK","TO","TT","TN","TR","TM","TC","TV","UG","UA","AE","GB","UM","US","UY","UZ","VU","VE","VN","VG","VI","WF","EH","YE","ZM","ZW"];
             
-            // Liste ISO standardisée des principales langues mondiales utilisables
-            const languageCodes = ["aa","ab","ae","af","ak","am","an","ar","as","av","ay","az","ba","be","bg","bh","bi","bm","bn","bo","br","bs","ca","ce","ch","co","cr","cs","cu","cv","cy","da","de","dv","dz","ee","el","en","eo","es","et","eu","fa","ff","fi","fj","fo","fr","fy","ga","gd","gl","gn","gu","gv","ha","he","hi","ho","hr","ht","hu","hy","hz","ia","id","ie","ig","ii","ik","io","is","it","iu","ja","jv","ka","kg","ki","kj","kk","kl","km","kn","ko","kr","ks","ku","kv","kw","ky","la","lb","lg","li","ln","lo","lt","lu","lv","mg","mh","mi","mk","ml","mn","mr","ms","mt","my","na","nb","nd","ne","ng","nl","nn","no","nr","nv","ny","oc","oj","om","or","os","pa","pi","pl","ps","pt","qu","rm","rn","ro","ru","rw","sa","sc","sd","se","sg","si","sk","sl","sm","sn","so","sq","sr","ss","st","su","sv","sw","ta","te","tg","th","ti","tk","tl","tn","to","tr","ts","tt","tw","ty","ug","uk","ur","uz","ve","vi","vo","wa","wo","xh","yi","yo","za","zh","zu"];
-
-            // Générateur de traduction d'affichage natif du navigateur
             const countryNames = new Intl.DisplayNames([currentLang], { type: 'region' });
-            const languageNames = new Intl.DisplayNames([currentLang], { type: 'language' });
 
-            // Remplissage Pays
             let countriesArr = countryCodes.map(code => {
                 try { return { code: code, name: countryNames.of(code) }; } catch(e) { return null; }
             }).filter(item => item !== null);
+            
             countriesArr.sort((a, b) => a.name.localeCompare(b.name));
+            
             countriesArr.forEach(c => {
                 let opt = document.createElement('option');
                 opt.value = c.code;
                 opt.textContent = c.name;
-                if(c.code === savedSelectedCountry) opt.selected = true;
+                
+                if (savedSelectedCountry) {
+                    if (c.code === savedSelectedCountry) opt.selected = true;
+                } else if (c.code === "GA") { // Par défaut sur le Gabon
+                    opt.selected = true;
+                }
                 countrySelect.appendChild(opt);
             });
-
-            // Remplissage Langues
-            let langArr = languageCodes.map(code => {
-                try { return { code: code, name: languageNames.of(code) }; } catch(e) { return null; }
-            }).filter(item => item !== null);
-            langArr.sort((a, b) => a.name.localeCompare(b.name));
-            langArr.forEach(l => {
-                let opt = document.createElement('option');
-                opt.value = l.code;
-                opt.textContent = l.name.charAt(0).toUpperCase() + l.name.slice(1);
-                if(l.code === savedSelectedLanguage) opt.selected = true;
-                languageSelect.appendChild(opt);
-            });
         }
+
+        // MAPPING AUTOMATIQUE PAYS -> LANGUE
+        document.getElementById('globalCountrySelect').addEventListener('change', (e) => {
+            const countryCode = e.target.value;
+            let targetLang = 'en'; // Langue par défaut si non listée (ex: Russie -> EN)
+
+            // Liste des pays qui forcent le Français (FR)
+            const frenchCountries = ["GA", "FR", "BE", "CH", "CA", "MC", "LU", "CI", "SN", "CM", "CG", "CD", "BF", "ML", "NE", "TG", "BJ", "GN", "MG", "TD", "CF"];
+            // Liste des pays qui forcent l'Espagnol (ES)
+            const spanishCountries = ["ES", "MX", "AR", "CO", "PE", "VE", "CL", "EC", "GT", "CU", "BO", "DO", "HN", "PY", "SV", "NI", "CR", "PA", "UY"];
+
+            if (frenchCountries.includes(countryCode)) {
+                targetLang = 'fr';
+            } else if (spanishCountries.includes(countryCode)) {
+                targetLang = 'es';
+            }
+
+            // Met à jour la langue du site instantanément sans recréer le menu déroulant pour garder le focus
+            setLanguage(targetLang, false);
+        });
 
         // --- 3. GESTION DU THÈME ---
         const themeSlider = document.getElementById('themeSlider');
@@ -839,7 +834,7 @@
         // --- 5. COOKIES ---
         const cookieBanner = document.getElementById('cookieBanner');
         window.addEventListener('DOMContentLoaded', () => {
-            setLanguage(defaultLang);
+            setLanguage(defaultLang, true);
             if (!localStorage.getItem('brk_cookies_accepted')) {
                 setTimeout(() => { cookieBanner.classList.add('show'); }, 1200);
             }
