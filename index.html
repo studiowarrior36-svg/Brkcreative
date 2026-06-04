@@ -336,7 +336,7 @@
             margin-top: 4px;
         }
 
-        /* --- MODAL MENTIONS LÉGALES (NOUVEAU) --- */
+        /* --- MODAL TEXTES LÉGAUX & COOKIES --- */
         .modal-mentions {
             display: none;
             position: fixed;
@@ -400,6 +400,22 @@
             margin-bottom: 10px;
         }
 
+        /* Bouton spécifique pour les cookies */
+        .btn-save-cookies {
+            background-color: var(--bleu-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .btn-save-cookies:hover {
+            background-color: var(--bleu-hover);
+        }
+
         /* --- ANIMATIONS --- */
         @keyframes scrollUpAnimation {
             0% { transform: translateY(450px); }
@@ -430,6 +446,12 @@
             color: var(--texte-muet);
         }
 
+        .footer-legal {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
         .footer-legal a {
             color: var(--texte-muet);
             text-decoration: none;
@@ -447,6 +469,7 @@
             .testimonials-container { height: auto; flex-direction: column; align-items: center; overflow: visible; mask-image: none; -webkit-mask-image: none; }
             .testimonials-container .testimonial-card { position: relative; left: unset !important; margin-bottom: 20px; animation: none !important; }
             .site-footer { flex-direction: column; gap: 15px; text-align: center; }
+            .footer-legal { justify-content: center; gap: 15px; }
         }
     </style>
 </head>
@@ -555,23 +578,13 @@
         </div>
     </section>
 
-    <!-- FENÊTRE MODAL DES MENTIONS LÉGALES -->
-    <div id="mentionsModal" class="modal-mentions">
-        <div class="modal-content">
-            <button class="modal-close" onclick="toggleModal(false)">&times;</button>
-            <h3 id="trans-modal-title">Mentions Légales</h3>
-            
-            <h4>1. Édition du site</h4>
-            <p id="trans-modal-p1">Le présent site vitrine est édité et géré par le studio de création <strong>BRK Creative</strong>.</p>
-            
-            <h4>2. Hébergement</h4>
-            <p id="trans-modal-p2">Ce site est hébergé sur les serveurs de la plateforme GitHub Inc., située au 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, États-Unis.</p>
-            
-            <h4>3. Propriété intellectuelle</h4>
-            <p id="trans-modal-p3">L'ensemble des contenus (textes, animations 3D, vidéos, designs graphiques et structures logicielles) présents sur ce site sont la propriété exclusive de BRK Creative. Toute reproduction ou utilisation sans accord préalable écrit est interdite.</p>
-            
-            <h4>4. Contact</h4>
-            <p id="trans-modal-p4">Pour toute demande d'information, de projet ou de devis personnalisé, veuillez utiliser les canaux officiels de communication fournis par notre équipe.</p>
+    <!-- FENÊTRE MODAL UNIQUE POUR LES TEXTES LÉGAUX -->
+    <div id="legalModal" class="modal-mentions">
+        <div class="modal-content" id="modal-content-area">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modal-dynamic-text">
+                <!-- Le contenu se charge dynamiquement via JavaScript -->
+            </div>
         </div>
     </div>
 
@@ -580,12 +593,18 @@
             © 2026 BRK Creative. Tous droits réservés.
         </div>
         <div class="footer-legal">
-            <a onclick="toggleModal(true)" id="trans-footer-legal">Mentions Légales</a>
+            <a onclick="openModal('mentions')" id="trans-footer-legal">Mentions Légales</a>
+            <a onclick="openModal('confidentialite')" id="trans-footer-conf">Politique de confidentialité</a>
+            <a onclick="openModal('conditions')" id="trans-footer-cond">Conditions d'utilisation</a>
+            <a onclick="openModal('cookies')" id="trans-footer-cook">Gérer vos préférences sur les cookies</a>
         </div>
     </footer>
 
-    <!-- LOGIQUE DE DICTIONNAIRE MULTILINGUE (FR / EN / ES) -->
+    <!-- LOGIQUE DE DICTIONNAIRE MULTILINGUE & MODALS -->
     <script>
+        // Définition de la langue active par défaut
+        let currentLang = 'fr';
+
         const translations = {
             fr: {
                 aboutSub: "À PROPOS",
@@ -608,11 +627,25 @@
                 r3: "Directrice Artistique",
                 footerCopy: "© 2026 BRK Creative. Tous droits réservés.",
                 footerLegal: "Mentions Légales",
-                modalTitle: "Mentions Légales",
-                modalP1: "Le présent site vitrine est édité et géré par le studio de création <strong>BRK Creative</strong>.",
-                modalP2: "Ce site est hébergé sur les serveurs de la plateforme GitHub Inc., située au 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, États-Unis.",
-                modalP3: "L'ensemble des contenus (textes, animations 3D, vidéos, designs graphiques et structures logicielles) présents sur ce site sont la propriété exclusive de BRK Creative. Toute reproduction ou utilisation sans accord préalable écrit est interdite.",
-                modalP4: "Pour toute demande d'information, de projet ou de devis personnalisé, veuillez utiliser les canaux officiels de communication fournis par notre équipe."
+                footerConf: "Politique de confidentialité",
+                footerCond: "Conditions d'utilisation",
+                footerCook: "Gérer vos préférences sur les cookies",
+                
+                // Contenus des Modals
+                mentions: `<h3>Mentions Légales</h3>
+                           <h4>1. Édition du site</h4><p>Le présent site vitrine est édité et géré par le studio de création <strong>BRK Creative</strong>.</p>
+                           <h4>2. Hébergement</h4><p>Ce site est hébergé sur les serveurs de la plateforme GitHub Inc., située au 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, États-Unis.</p>
+                           <h4>3. Propriété intellectuelle</h4><p>L'ensemble des contenus (textes, animations 3D, vidéos, designs graphiques) sont la propriété de BRK Creative. Toute reproduction est interdite.</p>`,
+                confidentialite: `<h3>Politique de confidentialité</h3>
+                                  <h4>1. Données collectées</h4><p>Ce site est un portfolio vitrine. Nous ne collectons aucune donnée personnelle nominative à votre insu.</p>
+                                  <h4>2. Formulaires et Contact</h4><p>Les informations transmises lors de vos demandes de devis sont uniquement utilisées pour l'établissement de votre proposition commerciale.</p>`,
+                conditions: `<h3>Conditions d'utilisation</h3>
+                             <h4>1. Objet</h4><p>Le présent site a pour objet la présentation des prestations professionnelles et créatives de BRK Creative.</p>
+                             <h4>2. Responsabilité</h4><p>BRK Creative s'efforce d'assurer l'exactitude des informations diffusées, mais ne saurait être tenu responsable d'éventuelles interruptions du site.</p>`,
+                cookies: `<h3>Gérer vos préférences sur les cookies</h3>
+                          <p>Nous utilisons uniquement des cookies techniques essentiels pour le bon fonctionnement et la mémorisation de vos choix d'affichage (comme votre pays).</p>
+                          <label><input type="checkbox" checked disabled> Cookies essentiels (Toujours activés)</label><br><br>
+                          <button class="btn-save-cookies" onclick="closeModal()">Enregistrer mes choix</button>`
             },
             en: {
                 aboutSub: "ABOUT US",
@@ -635,11 +668,24 @@
                 r3: "Art Director",
                 footerCopy: "© 2026 BRK Creative. All rights reserved.",
                 footerLegal: "Legal Notices",
-                modalTitle: "Legal Notices",
-                modalP1: "This portfolio website is edited and managed by <strong>BRK Creative</strong> studio.",
-                modalP2: "This website is hosted on the servers of GitHub Inc., located at 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA.",
-                modalP3: "All content (text, 3D animations, videos, graphic designs, and software structures) on this site is the exclusive property of BRK Creative. Any reproduction or use without prior written consent is prohibited.",
-                modalP4: "For any inquiries, projects, or customized quotes, please use the official communication channels provided by our team."
+                footerConf: "Privacy Policy",
+                footerCond: "Terms of Use",
+                footerCook: "Manage Cookie Preferences",
+                
+                mentions: `<h3>Legal Notices</h3>
+                           <h4>1. Website Edition</h4><p>This website is published and managed by <strong>BRK Creative</strong> studio.</p>
+                           <h4>2. Hosting</h4><p>This site is hosted by GitHub Inc., located at 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA.</p>
+                           <h4>3. Intellectual Property</h4><p>All content (text, 3D animations, videos, graphic designs) is the property of BRK Creative.</p>`,
+                confidentialite: `<h3>Privacy Policy</h3>
+                                  <h4>1. Data Collection</h4><p>This is a portfolio website. We do not collect personal data without your knowledge.</p>
+                                  <h4>2. Contact Information</h4><p>Information sent for quote requests is strictly used for business communication purposes.</p>`,
+                conditions: `<h3>Terms of Use</h3>
+                             <h4>1. Purpose</h4><p>This site presents the professional and creative services of BRK Creative.</p>
+                             <h4>2. Liability</h4><p>BRK Creative strives to maintain accurate information but is not liable for temporary site downtime.</p>`,
+                cookies: `<h3>Manage Cookie Preferences</h3>
+                          <p>We only use essential technical cookies to remember your display preferences (such as your country choice).</p>
+                          <label><input type="checkbox" checked disabled> Essential Cookies (Always enabled)</label><br><br>
+                          <button class="btn-save-cookies" onclick="closeModal()">Save Preferences</button>`
             },
             es: {
                 aboutSub: "SOBRE NOSOTROS",
@@ -662,15 +708,29 @@
                 r3: "Directora Artística",
                 footerCopy: "© 2026 BRK Creative. Todos los derechos reservados.",
                 footerLegal: "Avisos Legales",
-                modalTitle: "Avisos Legales",
-                modalP1: "Este sitio web de portafolio es editado y administrado por el estudio de diseño <strong>BRK Creative</strong>.",
-                modalP2: "Este sitio web está alojado en los servidores de GitHub Inc., ubicada en 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, EE. UU.",
-                modalP3: "Todo el contenido (texto, animaciones 3D, videos, diseños gráficos y estructuras de software) de este sitio es propiedad exclusiva de BRK Creative. Queda prohibida cualquier reproducción o uso sin el consentimiento previo por escrito.",
-                modalP4: "Para cualquier consulta, proyecto o presupuesto personalizado, utilice los canales de comunicación oficiales proporcionados por nuestro equipo."
+                footerConf: "Política de privacidad",
+                footerCond: "Condiciones de uso",
+                footerCook: "Gestionar preferencias de cookies",
+                
+                mentions: `<h3>Avisos Legales</h3>
+                           <h4>1. Edición del Sitio</h4><p>Este sitio web está editado y gestionado por el estudio <strong>BRK Creative</strong>.</p>
+                           <h4>2. Alojamiento</h4><p>Este sitio está alojado por GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, EE. UU.</p>
+                           <h4>3. Propiedad Intelectual</h4><p>Todo el contenido (texto, animaciones 3D, videos, diseños gráficos) es propiedad exclusiva de BRK Creative.</p>`,
+                confidentialite: `<h3>Política de privacidad</h3>
+                                  <h4>1. Datos recolectados</h4><p>Este es un sitio web de portafolio. No recolectamos datos personales sin su consentimiento.</p>
+                                  <h4>2. Uso de información</h4><p>La información enviada para solicitudes de presupuesto se utiliza únicamente para la propuesta comercial.</p>`,
+                conditions: `<h3>Condiciones de uso</h3>
+                             <h4>1. Objeto</h4><p>Este sitio tiene como objeto presentar los servicios profesionales y creativos de BRK Creative.</p>
+                             <h4>2. Responsabilidad</h4><p>BRK Creative no se hace responsable de las interrupciones temporales del servicio del sitio.</p>`,
+                cookies: `<h3>Gestionar preferencias de cookies</h3>
+                          <p>Solo utilizamos cookies técnicas esenciales para recordar sus preferencias de visualización (como el idioma de su país).</p>
+                          <label><input type="checkbox" checked disabled> Cookies esenciales (Siempre activas)</label><br><br>
+                          <button class="btn-save-cookies" onclick="closeModal()">Guardar opciones</button>`
             }
         };
 
         function changeCountry(countryName, langCode) {
+            currentLang = langCode; // Met à jour la langue globale active
             document.getElementById('country-label').textContent = countryName;
             const data = translations[langCode] || translations['en']; 
             
@@ -697,25 +757,31 @@
             document.getElementById('trans-q3').textContent = data.q3;
             document.getElementById('trans-r3').textContent = data.r3;
             document.getElementById('trans-footer-copy').textContent = data.footerCopy;
+            
+            // Liens du footer mis à jour
             document.getElementById('trans-footer-legal').textContent = data.footerLegal;
-
-            // Traduction de la fenêtre modal
-            document.getElementById('trans-modal-title').textContent = data.modalTitle;
-            document.getElementById('trans-modal-p1').innerHTML = data.modalP1;
-            document.getElementById('trans-modal-p2').textContent = data.modalP2;
-            document.getElementById('trans-modal-p3').textContent = data.modalP3;
-            document.getElementById('trans-modal-p4').textContent = data.modalP4;
+            document.getElementById('trans-footer-conf').textContent = data.footerConf;
+            document.getElementById('trans-footer-cond').textContent = data.footerCond;
+            document.getElementById('trans-footer-cook').textContent = data.footerCook;
         }
 
-        // Gestion de l'affichage de la modal des mentions légales
-        function toggleModal(show) {
-            const modal = document.getElementById('mentionsModal');
-            modal.style.display = show ? 'flex' : 'none';
+        // Système d'affichage de la boîte modal
+        function openModal(type) {
+            const modal = document.getElementById('legalModal');
+            const dynamicTextZone = document.getElementById('modal-dynamic-text');
+            
+            // Va chercher le texte correspondant au type et à la langue active
+            dynamicTextZone.innerHTML = translations[currentLang][type];
+            modal.style.display = 'flex';
         }
 
-        // Fermer la modal si on clique en dehors de la boîte blanche
+        function closeModal() {
+            document.getElementById('legalModal').style.display = 'none';
+        }
+
+        // Fermer au clic extérieur
         window.onclick = function(event) {
-            const modal = document.getElementById('mentionsModal');
+            const modal = document.getElementById('legalModal');
             if (event.target == modal) {
                 modal.style.display = 'none';
             }
