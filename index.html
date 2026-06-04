@@ -61,7 +61,6 @@
             z-index: 1000;
         }
 
-        /* Menu de sélection des langues épuré */
         .lang-selector {
             background-color: var(--card-bg);
             border: 1px solid var(--section-border);
@@ -74,7 +73,7 @@
             font-weight: 500;
             box-shadow: 0 4px 12px var(--shadow-color);
             outline: none;
-            appearance: none; /* Masque la flèche par défaut sur certains navigateurs */
+            appearance: none;
             -webkit-appearance: none;
             text-align: center;
         }
@@ -113,7 +112,6 @@
             border-top: none;
         }
 
-        /* Conteneurs internes pour garder un alignement propre */
         .section-container {
             width: 100%;
             max-width: 1100px;
@@ -176,7 +174,7 @@
             text-align: center;
         }
 
-        /* --- PORTFOLIO HORIZONTAL --- */
+        /* --- PORTFOLIO HORIZONTAL (DÉFILEMENT INFINI) --- */
         .scroll-wrapper-horizontal {
             width: 100%;
             overflow: hidden;
@@ -199,7 +197,7 @@
 
         @keyframes scrollLeft {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-50%); } /* Doit bouger de pile 50% pour la boucle */
         }
 
         .portfolio-card {
@@ -301,7 +299,7 @@
         /* --- TARIFS --- */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin-top: 15px;
             width: 100%;
@@ -340,7 +338,6 @@
             margin-bottom: 20px;
         }
 
-        /* --- BOUTONS STYLE APPLE --- */
         .cta-button {
             display: inline-block;
             text-decoration: none;
@@ -360,7 +357,7 @@
             background-color: #0077ed;
         }
 
-        /* --- CLIENTS (MARQUEE) --- */
+        /* --- TEMOIGNAGES (MARQUEE HORIZONTAL INFINI) --- */
         .marquee-container {
             width: 100%;
             overflow: hidden;
@@ -465,7 +462,6 @@
         .legal-modal-card h2 { color: var(--apple-blue); font-size: 1.6rem; margin-bottom: 20px; text-transform: uppercase; border-bottom: 2px solid var(--apple-blue); padding-bottom: 10px; }
         .legal-modal-card h3 { font-size: 1.1rem; margin: 25px 0 10px 0; color: var(--text-main); border-bottom: 1px solid var(--section-border); padding-bottom: 4px; text-transform: uppercase; font-weight: 600; }
         .legal-modal-card p, .legal-modal-card ul { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
-        .legal-modal-card ul { padding-left: 20px; margin-top: 5px; }
 
         .contact-link { 
             color: var(--apple-blue); 
@@ -505,11 +501,6 @@
             color: var(--text-main);
             line-height: 1.4;
         }
-        .cookie-text a {
-            color: var(--apple-blue);
-            text-decoration: none;
-        }
-        .cookie-text a:hover { text-decoration: underline; }
         .cookie-buttons {
             display: flex;
             gap: 10px;
@@ -546,8 +537,8 @@
             .media-wrapper { width: 120px; }
             .slide-title { font-size: 1.4rem; }
             .slide-text { font-size: 1rem; }
-            .pricing-grid { grid-template-columns: 1fr; gap: 10px; overflow-y: auto; max-height: 50vh; }
-            .pricing-card { min-height: auto; padding: 20px; }
+            .pricing-grid { grid-template-columns: 1fr; gap: 15px; }
+            .pricing-card { min-height: auto; padding: 25px 20px; }
             .legal-modal-card { padding: 20px; width: 95%; }
             .cookie-banner { width: 95%; bottom: 10px; }
         }
@@ -557,7 +548,6 @@
 
     <!-- Zone de Contrôles Fixe (Langues Multiples + Thème) -->
     <div class="controls-container">
-        <!-- Ajoute ou supprime des langues directement ici via les <option> -->
         <select class="lang-selector" id="langSelect" title="Choisir la langue / Choose language">
             <option value="fr">🇫🇷 FR</option>
             <option value="en">🇬🇧 EN</option>
@@ -585,7 +575,7 @@
         </a>
     </div>
 
-    <!-- Écran 2 : Portfolio -->
+    <!-- Écran 2 : Portfolio (Avec duplications pour relancer le défilement) -->
     <div id="portfolio-section" class="section">
         <div class="section-container">
             <h2 class="blue-title" data-lang-fr="Créations" data-lang-en="Creations" data-lang-es="Creaciones">Créations</h2>
@@ -602,7 +592,11 @@
                         <div class="media-wrapper"><div class="video-thumb-placeholder" style="background: #222;"></div><div class="video-play-icon">▶</div></div>
                         <div class="card-info"><h4 data-lang-fr="Projet Vidéo 2" data-lang-en="Video Project 2" data-lang-es="Proyecto de Video 2">Projet Vidéo 2</h4><p data-lang-fr="Motion Design" data-lang-en="Motion Design" data-lang-es="Diseño de Movimiento">Motion Design</p></div>
                     </div>
-                    <!-- Duplication pour défilement infini -->
+                    <div class="portfolio-card" data-type="video" data-src="video3.mp4">
+                        <div class="media-wrapper"><div class="video-thumb-placeholder" style="background: #222;"></div><div class="video-play-icon">▶</div></div>
+                        <div class="card-info"><h4 data-lang-fr="Projet Vidéo 3" data-lang-en="Video Project 3" data-lang-es="Proyecto de Video 3">Projet Vidéo 3</h4><p data-lang-fr="VFX & Compositing" data-lang-en="VFX & Compositing" data-lang-es="VFX y Composición">VFX & Compositing</p></div>
+                    </div>
+                    <!-- DUPLICATION INDISPENSABLE POUR LE DÉFILEMENT INFINI -->
                     <div class="portfolio-card" data-type="video" data-src="video1.mp4">
                         <div class="media-wrapper"><div class="video-thumb-placeholder" style="background: #222;"></div><div class="video-play-icon">▶</div></div>
                         <div class="card-info"><h4>Projet Vidéo 1</h4><p data-lang-fr="Animation 3D / Montage" data-lang-en="3D Animation / Editing" data-lang-es="Animación 3D / Edición">Animation 3D / Montage</p></div>
@@ -610,6 +604,10 @@
                     <div class="portfolio-card" data-type="video" data-src="video2.mp4">
                         <div class="media-wrapper"><div class="video-thumb-placeholder" style="background: #222;"></div><div class="video-play-icon">▶</div></div>
                         <div class="card-info"><h4>Projet Vidéo 2</h4><p data-lang-fr="Motion Design" data-lang-en="Motion Design" data-lang-es="Diseño de Movimiento">Motion Design</p></div>
+                    </div>
+                    <div class="portfolio-card" data-type="video" data-src="video3.mp4">
+                        <div class="media-wrapper"><div class="video-thumb-placeholder" style="background: #222;"></div><div class="video-play-icon">▶</div></div>
+                        <div class="card-info"><h4>Projet Vidéo 3</h4><p data-lang-fr="VFX & Compositing" data-lang-en="VFX & Compositing" data-lang-es="VFX y Composición">VFX & Compositing</p></div>
                     </div>
                 </div>
             </div>
@@ -625,6 +623,15 @@
                     <div class="portfolio-card" data-type="image" data-src="image2.jpg">
                         <div class="media-wrapper"><img src="image2.jpg" alt="Design Graphique"></div>
                         <div class="card-info"><h4 data-lang-fr="Identité Visuelle" data-lang-en="Visual Identity" data-lang-es="Identidad Visual">Identité Visuelle</h4><p data-lang-fr="Branding & Logo" data-lang-en="Branding & Logo" data-lang-es="Branding y Logotipo">Branding & Logo</p></div>
+                    </div>
+                    <!-- DUPLICATION INDISPENSABLE POUR LE DÉFILEMENT INFINI -->
+                    <div class="portfolio-card" data-type="image" data-src="Phrase 2.png">
+                        <div class="media-wrapper"><img src="Phrase 2.png" alt="Conception Graphique"></div>
+                        <div class="card-info"><h4>Conception Graphique</h4><p data-lang-fr="Design Typographique & Concept Art" data-lang-en="Typography & Concept Art" data-lang-es="Diseño Tipográfico y Arte de Concepto">Design Typographique & Concept Art</p></div>
+                    </div>
+                    <div class="portfolio-card" data-type="image" data-src="image2.jpg">
+                        <div class="media-wrapper"><img src="image2.jpg" alt="Design Graphique"></div>
+                        <div class="card-info"><h4>Identité Visuelle</h4><p data-lang-fr="Branding & Logo" data-lang-en="Branding & Logo" data-lang-es="Branding y Logotipo">Branding & Logo</p></div>
                     </div>
                 </div>
             </div>
@@ -644,27 +651,44 @@
                         <h3 class="slide-title" data-lang-fr="Post-Production de pointe" data-lang-en="Advanced Post-Production" data-lang-es="Postproducción de Vanguardia">Post-Production de pointe</h3>
                         <p class="slide-text" data-lang-fr="Incrustations VFX, masquages techniques et étalonnage précis pour sublimer vos images." data-lang-en="VFX compositing, technical masking and precise color grading to elevate your images." data-lang-es="Composición de VFX, enmascaramiento técnico y gradación de color precisa para mejorar tus imágenes.">Incrustations VFX, masquages techniques et étalonnage précis pour sublimer vos images.</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Écran 4 : Testimonials -->
-    <div id="testimonials-section" class="section">
-        <div class="section-container">
-            <h2 class="blue-title" data-lang-fr="CE QUE DISENT NOS CLIENTS" data-lang-en="WHAT OUR CLIENTS SAY" data-lang-es="LO QUE DICEN NUESTROS CLIENTES">CE QUE DISENT NOS CLIENTS</h2>
-            <div class="marquee-container">
-                <div class="marquee-track">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text" data-lang-fr="&quot;Un travail de post-production d'une quality rare. Le rythme du montage a transcendé notre projet.&quot;" data-lang-en="&quot;A rare quality of post-production work. The rhythm of the edit transcended our project.&quot;" data-lang-es="&quot;Un trabajo de postproducción de una calidad excepcional. El ritmo de la edición trascendió nuestro proyecto.&quot;">"Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet."</p>
-                        <span class="author-name">Lucas Mandji</span><span class="author-role-blue" data-lang-fr="Réalisateur Indépendant" data-lang-en="Independent Director" data-lang-es="Director Independiente">Réalisateur Indépendant</span>
+                    <div class="apple-slide">
+                        <h3 class="slide-title" data-lang-fr="Design & Identité" data-lang-en="Design & Identity" data-lang-es="Diseño e Identidad">Design & Identité</h3>
+                        <p class="slide-text" data-lang-fr="Création de Concept Arts uniques et d'identités fortes adaptées à votre vision." data-lang-en="Creation of unique Concept Arts and strong identities tailored to your vision." data-lang-es="Creación de Concept Arts únicos e identidades fuertes adaptadas a su visión.">Création de Concept Arts uniques et d'identités fortes adaptées à votre vision.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Écran 5 : Grille des Tarifs -->
+    <!-- Écran 4 : Testimonials (Avec duplications pour restaurer le défilement) -->
+    <div id="testimonials-section" class="section">
+        <div class="section-container">
+            <h2 class="blue-title" data-lang-fr="CE QUE DISENT NOS CLIENTS" data-lang-en="WHAT OUR CLIENTS SAY" data-lang-es="LO QUE DICEN NUESTROS CLIENTES">CE QUE DISENT NOS CLIENTS</h2>
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text" data-lang-fr="&quot;Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet.&quot;" data-lang-en="&quot;A rare quality of post-production work. The rhythm of the edit transcended our project.&quot;" data-lang-es="&quot;Un trabajo de postproducción de una calidad excepcional. El ritmo de la edición trascendió nuestro proyecto.&quot;">"Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet."</p>
+                        <span class="author-name">Lucas Mandji</span><span class="author-role-blue" data-lang-fr="Réalisateur Indépendant" data-lang-en="Independent Director" data-lang-es="Director Independiente">Réalisateur Indépendant</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text" data-lang-fr="&quot;La direction artistique pour nos animations 3D est tout simplement incroyable. Très à l'écoute.&quot;" data-lang-en="&quot;The artistic direction for our 3D animations is simply incredible. Very attentive.&quot;" data-lang-es="&quot;La dirección artística de nuestras animaciones 3D es simplemente increíble. Muy atentos.&quot;">"La direction artistique pour nos animations 3D est tout simplement incroyable. Très à l'écoute."</p>
+                        <span class="author-name">Sarah B.</span><span class="author-role-blue" data-lang-fr="Directrice Marketing" data-lang-en="Marketing Director" data-lang-es="Directora de Marketing">Directrice Marketing</span>
+                    </div>
+                    <!-- DUPLICATION DES CARTES POUR FAIRE TOURNER LE MARQUEE EN BOUCLE -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text" data-lang-fr="&quot;Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet.&quot;" data-lang-en="&quot;A rare quality of post-production work. The rhythm of the edit transcended our project.&quot;" data-lang-es="&quot;Un trabajo de postproducción de una calidad excepcional. El ritmo de la edición trascendió nuestro proyecto.&quot;">"Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet."</p>
+                        <span class="author-name">Lucas Mandji</span><span class="author-role-blue">Réalisateur Indépendant</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text" data-lang-fr="&quot;La direction artistique pour nos animations 3D est tout simplement incroyable. Très à l'écoute.&quot;" data-lang-en="&quot;The artistic direction for our 3D animations is simply incredible. Very attentive.&quot;" data-lang-es="&quot;La dirección artística de nuestras animaciones 3D es simplemente increíble. Muy atentos.&quot;">"La direction artistique pour nos animations 3D est tout simplement incroyable. Très à l'écoute."</p>
+                        <span class="author-name">Sarah B.</span><span class="author-role-blue">Directrice Marketing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Écran 5 : Grille des Tarifs (Restauration des deux colonnes Apple) -->
     <div id="pricing-section" class="section">
         <div class="section-container">
             <h2 class="blue-title" data-lang-fr="Tarifs" data-lang-en="Pricing" data-lang-es="Precios">Tarifs</h2>
@@ -673,10 +697,18 @@
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <div>
-                        <h3 data-lang-fr="Option Unique" data-lang-en="Single Option" data-lang-es="Opción Única">Option Unique</h3>
+                        <h3 data-lang-fr="Option 1 : Professionnelle" data-lang-en="Option 1: Professional" data-lang-es="Opción 1: Profesional">Option 1 : Professionnelle</h3>
                         <p class="pricing-description" data-lang-fr="Les tarifs varient selon la complexité et les besoins du projet. Contactez-nous pour un devis personnalisé." data-lang-en="Rates vary depending on the complexity and needs of the project. Contact us for a custom quote." data-lang-es="Las tarifas varían según la complejidad y las necesidades del proyecto. Contáctenos para un presupuesto personalizado.">Les tarifs varient selon la complexité et les besoins du projet. Contactez-nous pour un devis personnalisé.</p>
                     </div>
-                    <a href="#contact-section" class="cta-button" data-lang-fr="Demander un devis" data-lang-en="Request a quote" data-lang-es="Solicitar un presupuesto">Demander un devis</a>
+                    <a href="#contact-section" class="cta-button" data-lang-fr="Demander un devis" data-lang-en="Request a quote" data-lang-es="Solicitar presupuesto">Demander un devis</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div>
+                        <h3 data-lang-fr="Option 2 : Premium" data-lang-en="Option 2: Premium" data-lang-es="Opción 2: Premium">Option 2 : Premium</h3>
+                        <p class="pricing-description" data-lang-fr="Chaque création est unique. Les prix sont établis sur mesure selon votre vision et vos exigences." data-lang-en="Each creation is unique. Prices are established tailored to your vision and requirements." data-lang-es="Cada creación es única. Los precios se establecen a la medida de su visión y requisitos.">Chaque création est unique. Les prix sont établis sur mesure selon votre vision et vos exigences.</p>
+                    </div>
+                    <a href="#contact-section" class="cta-button" data-lang-fr="Estimer mon projet" data-lang-en="Estimate my project" data-lang-es="Estimar mi proyecto">Estimer mon projet</a>
                 </div>
             </div>
         </div>
@@ -687,7 +719,9 @@
         <div class="section-container">
             <h2 class="blue-title" data-lang-fr="À Propos" data-lang-en="About" data-lang-es="Sobre Nosotros">À Propos</h2>
             <div class="about-content">
-                <p data-lang-fr="<strong>BRK Creative</strong> est né d’une passion brute pour le cinéma, l’image et l’émotion. Bien plus qu’un studio de post‑production, c’est un laboratoire visuel." data-lang-en="<strong>BRK Creative</strong> was born from a raw passion for cinema, image and emotion. Far more than a post-production studio, it is a visual laboratory." data-lang-es="<strong>BRK Creative</strong> nació de una pasión pura por el cine, la imagen y la emoción. Mucho más que un estudio de postproducción, es un laboratorio visual."><strong>BRK Creative</strong> est né d’une passion brute pour le cinéma, l’image et l’émotion. Bien plus qu’un studio de post‑production, c’est un laboratoire visuel.</p>
+                <p data-lang-fr="<strong>BRK Creative</strong> est né d’une passion brute pour le cinéma, l’image et l’émotion. Bien plus qu’un studio de post‑production, c’est un laboratoire visuel où chaque projet devient un terrain d’expérimentation, un espace pour repousser les limites du possible." data-lang-en="<strong>BRK Creative</strong> was born from a raw passion for cinema, image and emotion. Far more than a post-production studio, it is a visual laboratory where each project becomes an experimental playground, a space to push the boundaries of what's possible." data-lang-es="<strong>BRK Creative</strong> nació de una pasión pura por el cine, la imagen y la emoción. Mucho más que un estudio de postproducción, es un laboratorio visual donde cada proyecto se convierte en un campo de experimentación."><strong>BRK Creative</strong> est né d’une passion brute pour le cinéma, l’image et l’émotion. Bien plus qu’un studio de post‑production, c’est un laboratoire visuel où chaque projet devient un terrain d’expérimentation, un espace pour repousser les limites du possible.</p>
+                <br>
+                <p data-lang-fr="Spécialisé dans le montage, la post‑production et la conception graphique, BRK Creative façonne des identités visuelles fortes et des récits qui marquent." data-lang-en="Specialized in editing, post-production and graphic design, BRK Creative shapes strong visual identities and narratives that matter." data-lang-es="Especializado en edición, postproducción y diseño gráfico, BRK Creative da forma a identidades visuales fuertes y narrativas que dejan huella.">Spécialisé dans le montage, la post‑production et la conception graphique, BRK Creative façonne des identités visuelles fortes et des récits qui marquent.</p>
             </div>
 
             <div id="contact-section" style="margin-top: 30px; text-align: center;">
@@ -733,44 +767,26 @@
     </div>
 
     <script>
-        // --- SYSTEME DE TRADUCTION AVANCÉ (SANS LIMITE DE LANGUES) ---
+        // --- SYSTEME DE TRADUCTION AVANCÉ ---
         const langSelect = document.getElementById('langSelect');
-        
-        // Détecter automatiquement la langue par défaut (Stockée -> Langue Navigateur -> Français de secours)
         let defaultLang = localStorage.getItem('lang') || navigator.language.slice(0, 2) || 'fr';
         
-        // Si la langue du navigateur n'est pas gérée dans notre menu, on force le Français
         const supportedLanguages = ['fr', 'en', 'es'];
-        if (!supportedLanguages.includes(defaultLang)) {
-            defaultLang = 'fr';
-        }
+        if (!supportedLanguages.includes(defaultLang)) { defaultLang = 'fr'; }
 
         function setLanguage(lang) {
             const elements = document.querySelectorAll('[data-lang-fr]');
-            
             elements.forEach(el => {
-                // Cherche l'attribut de la langue demandée (ex: data-lang-en), sinon prend le français en secours
                 const translatedText = el.getAttribute(`data-lang-${lang}`) || el.getAttribute('data-lang-fr');
-                if (translatedText) {
-                    el.innerHTML = translatedText;
-                }
+                if (translatedText) { el.innerHTML = translatedText; }
             });
-            
-            // Met à jour la valeur affichée dans le menu déroulant
             langSelect.value = lang;
             document.documentElement.lang = lang;
             localStorage.setItem('lang', lang);
         }
 
-        // Écouter le changement de sélection dans le menu déroulant
-        langSelect.addEventListener('change', (e) => {
-            setLanguage(e.target.value);
-        });
-
-        // Appliquer la langue détectée ou sauvegardée au chargement complet
-        window.addEventListener('DOMContentLoaded', () => {
-            setLanguage(defaultLang);
-        });
+        langSelect.addEventListener('change', (e) => { setLanguage(e.target.value); });
+        window.addEventListener('DOMContentLoaded', () => { setLanguage(defaultLang); });
 
         // --- GESTION DU THÈME ---
         const themeSlider = document.getElementById('themeSlider');
@@ -818,12 +834,8 @@
             });
         });
 
-        function triggerLegalView() {
-            mediaContainer.innerHTML = legalTemplate.innerHTML;
-            lightbox.classList.add('active');
-        }
+        function triggerLegalView() { mediaContainer.innerHTML = legalTemplate.innerHTML; lightbox.classList.add('active'); }
         openLegal.addEventListener('click', triggerLegalView);
-
         function closeLightbox() { lightbox.classList.remove('active'); mediaContainer.innerHTML = ''; }
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
