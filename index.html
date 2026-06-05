@@ -45,7 +45,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
+            padding: 12px 5%;
             background-color: var(--bg-navbar);
             position: sticky;
             top: 0;
@@ -59,18 +59,21 @@
             align-items: flex-start;
         }
 
+        /* Ajustement précis de la taille du logo */
         .logo-img {
-            width: 140px;
-            height: auto;
+            width: 90px;
+            max-height: 45px;
+            object-fit: contain;
             display: block;
         }
 
         .slogan-nav {
-            font-size: 0.75rem;
-            opacity: 0.8;
-            letter-spacing: 1px;
-            margin-top: 2px;
+            font-size: 0.70rem;
+            opacity: 0.75;
+            letter-spacing: 0.8px;
+            margin-top: 4px;
             color: var(--texte-secondaire);
+            font-weight: 500;
         }
 
         .nav-controls {
@@ -136,6 +139,7 @@
             font-size: 0.9rem;
             margin-bottom: 8px;
             cursor: pointer;
+            transition: color 0.2s ease;
         }
 
         .menu-col a:hover {
@@ -146,15 +150,14 @@
         .presentation-section {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 80px 10%;
-            height: 600px;
-            overflow: hidden;
+            justify-content: center;
+            padding: 100px 10%;
+            text-align: center;
         }
 
         .presentation-text {
-            width: 55%;
-            text-align: left;
+            width: 100%;
+            max-width: 800px;
         }
 
         .presentation-text .subtitle {
@@ -163,57 +166,118 @@
             letter-spacing: 2px;
             font-size: 0.85rem;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .presentation-text h1 {
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
             line-height: 1.2;
         }
 
         .presentation-text h2 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: var(--texte-principal);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 600;
         }
 
         .presentation-text p {
             color: var(--texte-secondaire);
-            line-height: 1.6;
-            font-size: 1.1rem;
+            line-height: 1.8;
+            font-size: 1.15rem;
         }
 
-        .presentation-media-scroller {
-            width: 35%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        /* --- SECTION : NOS CRÉATIONS --- */
+        .creations-section {
+            background-color: var(--bg-tarifs);
+            padding: 80px 10%;
+            border-top: 1px solid var(--bordure);
         }
 
-        .media-item {
-            position: absolute;
-            width: 100%;
+        .creations-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .creations-header h2 {
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            color: var(--texte-secondaire);
+            border: 1px solid var(--bordure);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--bleu-accent);
+            color: white;
+            border-color: var(--bleu-accent);
+        }
+
+        .creations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .creation-item {
+            background: var(--bg-carte);
+            border: 1px solid var(--bordure);
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid var(--bordure);
-            box-shadow: 0 10px 25px var(--shadow-color);
-            background-color: #000;
+            box-shadow: 0 10px 20px var(--shadow-color);
+            display: block;
         }
 
-        .media-item img, .media-item video {
+        .creation-media {
             width: 100%;
-            height: 180px;
+            height: 200px;
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .creation-media img, .creation-media video {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            display: block;
+        }
+
+        .creation-info {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .creation-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .creation-info p {
+            color: var(--texte-secondaire);
+            font-size: 0.85rem;
         }
 
         /* --- TARIFS --- */
         .tarifs-section {
-            background-color: var(--bg-tarifs);
+            background-color: var(--bg-principal);
             padding: 100px 10%;
             border-top: 1px solid var(--bordure);
             border-bottom: 1px solid var(--bordure);
@@ -314,43 +378,47 @@
 
         .testimonials-section h2 {
             font-size: 2rem;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             letter-spacing: 1px;
         }
 
-        .testimonials-container {
+        .testimonials-wrapper {
             position: relative;
-            height: 450px; 
+            height: 340px;
             overflow: hidden;
+            max-width: 700px;
+            margin: 0 auto;
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        }
+
+        .testimonials-scroll-container {
             display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
-            -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            flex-direction: column;
+            gap: 20px;
+            animation: scrollUpInfinite 18s linear infinite;
+        }
+
+        .testimonials-wrapper:hover .testimonials-scroll-container {
+            animation-play-state: paused;
         }
 
         .testimonial-card {
-            position: absolute;
-            width: 300px;
             background: var(--bg-carte);
             border: 1px solid var(--bordure);
             padding: 30px;
             border-radius: 12px;
             text-align: left;
             box-shadow: 0 10px 30px var(--shadow-color);
-            cursor: pointer;
-        }
-
-        .testimonials-container:hover .testimonial-card {
-            animation-play-state: paused !important;
+            width: 100%;
         }
 
         .testimonial-card .quote {
             color: var(--texte-principal);
             font-style: italic;
-            line-height: 1.5;
+            line-height: 1.6;
             font-size: 0.95rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .testimonial-card .client-name {
@@ -366,7 +434,12 @@
             margin-top: 4px;
         }
 
-        /* --- MODAL TEXTES LÉGAUX & COOKIES --- */
+        @keyframes scrollUpInfinite {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        /* --- MODALS --- */
         .modal-mentions {
             display: none;
             position: fixed;
@@ -446,59 +519,38 @@
             background-color: var(--bleu-hover);
         }
 
-        /* --- ANIMATIONS --- */
-        @keyframes scrollUpAnimation {
-            0% { transform: translateY(450px); }
-            100% { transform: translateY(-550px); }
-        }
-
-        .presentation-media-scroller .media-item.speed-fast { top: 0; animation: scrollUpAnimation 16s linear infinite; }
-        .presentation-media-scroller .media-item.speed-medium { top: 0; animation: scrollUpAnimation 24s linear infinite; animation-delay: 2s; }
-        .presentation-media-scroller .media-item.speed-slow { top: 0; animation: scrollUpAnimation 32s linear infinite; animation-delay: 5s; }
-
-        .testimonials-container .testimonial-card:nth-child(1) { left: 5%; }
-        .testimonials-container .testimonial-card:nth-child(2) { left: 38%; }
-        .testimonials-container .testimonial-card:nth-child(3) { left: 70%; }
-
-        /* --- FOOTER --- */
         footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 10%;
-            background-color: #000;
+            padding: 30px 5%;
             border-top: 1px solid var(--bordure);
-            font-size: 0.9rem;
-            color: var(--texte-principal);
-            opacity: 0.9;
+            background-color: var(--bg-principal);
         }
 
         .footer-legal {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
         }
 
         .footer-legal a {
-            color: var(--texte-secondaire);
+            color: var(--texte-muet);
             text-decoration: none;
+            font-size: 0.85rem;
             cursor: pointer;
-            opacity: 0.8;
         }
 
         .footer-legal a:hover {
-            color: var(--bleu-accent);
-            opacity: 1;
+            color: var(--texte-principal);
         }
 
         @media (max-width: 968px) {
-            .navbar { flex-direction: column; gap: 15px; text-align: center; }
+            .navbar { flex-direction: column; gap: 15px; text-align: center; padding: 20px 5%; }
             .logo-container { align-items: center; }
-            .presentation-section { flex-direction: column; height: auto; padding: 40px 5%; }
-            .presentation-text, .presentation-media-scroller { width: 100%; margin-bottom: 40px; text-align: center; }
-            .presentation-media-scroller { height: 300px; }
-            .testimonials-container { height: auto; flex-direction: column; align-items: center; overflow: visible; mask-image: none; -webkit-mask-image: none; }
-            .testimonials-container .testimonial-card { position: relative; left: unset !important; margin-bottom: 20px; animation: none !important; }
+            .presentation-section { padding: 60px 5%; }
+            .presentation-text h1 { font-size: 2.5rem; }
+            .creations-section, .tarifs-section, .testimonials-section { padding: 60px 5%; }
             footer { flex-direction: column; gap: 15px; text-align: center; }
             .footer-legal { justify-content: center; gap: 15px; }
         }
@@ -509,7 +561,7 @@
     <header class="navbar">
         <div class="logo-container">
             <img src="Method Draw Image.png" alt="Logo BRK Creative" class="logo-img">
-            <span class="slogan-nav">Créativité • Design • Innovation</span>
+            <span class="slogan-nav">Créer pour inspirer</span>
         </div>
         <div class="nav-controls">
             <div class="dropdown-pays-container">
@@ -553,16 +605,50 @@
             <h2 id="trans-welcome-title">Bienvenue sur mon portfolio</h2>
             <p id="trans-about-desc">Découvrez mes créations, mes projets et mon univers visuel. BRK Creative est un studio spécialisé dans la post-production de haute qualité, le Motion Design d'impact et l'animation 3D. Nous mettons en valeur votre marque grâce à un savoir-faire technique rigoureux et une créativité sans limite.</p>
         </div>
-        
-        <div class="presentation-media-scroller">
-            <div class="media-item speed-fast">
-                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" alt="Showcase 1">
+    </section>
+
+    <!-- PLAN INTERACTIF : NOS CRÉATIONS -->
+    <section class="creations-section">
+        <div class="creations-header">
+            <h2 id="trans-creations-title">NOS CRÉATIONS</h2>
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterCreations('all')" id="filter-all">Tous</button>
+                <button class="filter-btn" onclick="filterCreations('postprod')" id="filter-postprod">Post-Production</button>
+                <button class="filter-btn" onclick="filterCreations('motion')" id="filter-motion">Motion Design</button>
+                <button class="filter-btn" onclick="filterCreations('3d')" id="filter-3d">Animation 3D</button>
             </div>
-            <div class="media-item speed-medium">
-                <video autoplay loop muted src="https://assets.mixkit.co/videos/preview/mixkit-abstract-laser-lights-background-42013-large.mp4"></video>
+        </div>
+
+        <div class="creations-grid" id="creations-container-grid">
+            <!-- Projet 1 -->
+            <div class="creation-item" data-category="postprod">
+                <div class="creation-media">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80" alt="Cinematic Edit">
+                </div>
+                <div class="creation-info">
+                    <h3>Cinematic Showreel</h3>
+                    <p>Montage dynamique et étalonnage colorimétrique professionnel.</p>
+                </div>
             </div>
-            <div class="media-item speed-slow">
-                <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=400&q=80" alt="Showcase 2">
+            <!-- Projet 2 -->
+            <div class="creation-item" data-category="motion">
+                <div class="creation-media">
+                    <video autoplay loop muted src="https://assets.mixkit.co/videos/preview/mixkit-abstract-laser-lights-background-42013-large.mp4"></video>
+                </div>
+                <div class="creation-info">
+                    <h3>Dynamic Branding</h3>
+                    <p>Animations graphiques et habillage visuel percutant pour réseaux.</p>
+                </div>
+            </div>
+            <!-- Projet 3 -->
+            <div class="creation-item" data-category="3d">
+                <div class="creation-media">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=500&q=80" alt="3D Environment">
+                </div>
+                <div class="creation-info">
+                    <h3>Concept 3D</h3>
+                    <p>Modélisation et rendu d'univers narratifs sous Blender.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -592,34 +678,47 @@
     <section class="testimonials-section">
         <h2 id="trans-testi-title">CE QUE DISENT NOS CLIENTS</h2>
         
-        <div class="testimonials-container">
-            <div class="testimonial-card speed-fast">
-                <p class="quote" id="trans-q1">"Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet du début à la fin."</p>
-                <h4 class="client-name">LUCAS MANDJI</h4>
-                <span class="client-role" id="trans-r1">Réalisateur Indépendant</span>
-            </div>
-
-            <div class="testimonial-card speed-medium">
-                <p class="quote" id="trans-q2">"L'équipe a su capter instantanément l'essence même de notre marque. Le rendu visuel final dépasse de loin nos attentes."</p>
-                <h4 class="client-name">NDJI</h4>
-                <span class="client-role" id="trans-r2">Producteur Indépendant</span>
-            </div>
-
-            <div class="testimonial-card speed-slow">
-                <p class="quote" id="trans-q3">"Professionnalisme, réactivité constante et fluidité totale dans les échanges. Les échéances ont été scrupuleusement respectées."</p>
-                <h4 class="client-name">SOPHIE M.</h4>
-                <span class="client-role" id="trans-r3">Directrice Artistique</span>
+        <div class="testimonials-wrapper">
+            <div class="testimonials-scroll-container">
+                <div class="testimonial-card">
+                    <p class="quote" id="trans-q1">"Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet du début à la fin."</p>
+                    <h4 class="client-name">LUCAS MANDJI</h4>
+                    <span class="client-role" id="trans-r1">Réalisateur Indépendant</span>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote" id="trans-q2">"L'équipe a su capter instantanément l'essence même de notre marque. Le rendu visuel final dépasse de loin nos attentes."</p>
+                    <h4 class="client-name">NDJI</h4>
+                    <span class="client-role" id="trans-r2">Producteur Indépendant</span>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote" id="trans-q3">"Professionnalisme, réactivité constante et fluidité totale dans les échanges. Les échéances ont été scrupuleusement respectées."</p>
+                    <h4 class="client-name">SOPHIE M.</h4>
+                    <span class="client-role" id="trans-r3">Directrice Artistique</span>
+                </div>
+                <!-- Duplication pour boucle infinie -->
+                <div class="testimonial-card">
+                    <p class="quote" id="trans-q1-dup">"Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet du début à la fin."</p>
+                    <h4 class="client-name">LUCAS MANDJI</h4>
+                    <span class="client-role" id="trans-r1-dup">Réalisateur Indépendant</span>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote" id="trans-q2-dup">"L'équipe a su capter instantanément l'essence même de notre marque. Le rendu visuel final dépasse de loin nos attentes."</p>
+                    <h4 class="client-name">NDJI</h4>
+                    <span class="client-role" id="trans-r2-dup">Producteur Indépendant</span>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote" id="trans-q3-dup">"Professionnalisme, réactivité constante et fluidité totale dans les échanges. Les échéances ont été scrupuleusement respectées."</p>
+                    <h4 class="client-name">SOPHIE M.</h4>
+                    <span class="client-role" id="trans-r3-dup">Directrice Artistique</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FENÊTRE MODAL UNIQUE POUR LES TEXTES LÉGAUX -->
     <div id="legalModal" class="modal-mentions">
         <div class="modal-content" id="modal-content-area">
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div id="modal-dynamic-text">
-                <!-- Le contenu s'affiche dynamiquement -->
-            </div>
+            <div id="modal-dynamic-text"></div>
         </div>
     </div>
 
@@ -635,15 +734,32 @@
         </div>
     </footer>
 
-    <!-- LOGIQUE DE DICTIONNAIRE MULTILINGUE & MODALS -->
     <script>
         let currentLang = 'fr';
+
+        function filterCreations(category) {
+            const items = document.querySelectorAll('.creation-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
 
         const translations = {
             fr: {
                 aboutSub: "À PROPOS",
                 welcomeTitle: "Bienvenue sur mon portfolio",
                 aboutDesc: "Découvrez mes créations, mes projets et mon univers visuel. BRK Creative est un studio spécialisé dans la post-production de haute qualité, le Motion Design d'impact et l'animation 3D. Nous mettons en valeur votre marque grâce à un savoir-faire technique rigoureux et une créativité sans limite.",
+                creationsTitle: "NOS CRÉATIONS",
+                filterAll: "Tous",
                 tarifsTitle: "TARIFS",
                 tarifsSub: "Des solutions nettes et transparentes adaptées à vos ambitions.",
                 opt1Title: "OPTION 1 : PROFESSIONNELLE",
@@ -684,6 +800,8 @@
                 aboutSub: "ABOUT US",
                 welcomeTitle: "Welcome to my portfolio",
                 aboutDesc: "Discover my creations, my projects, and my visual universe. BRK Creative is a studio specializing in high-quality post-production, impactful Motion Design, and 3D animation. We showcase your brand through rigorous technical expertise and boundless creativity.",
+                creationsTitle: "OUR CREATIONS",
+                filterAll: "All",
                 tarifsTitle: "PRICING",
                 tarifsSub: "Clear and transparent solutions tailored to your ambitions.",
                 opt1Title: "OPTION 1: PROFESSIONAL",
@@ -724,6 +842,8 @@
                 aboutSub: "SOBRE NOSOTROS",
                 welcomeTitle: "Bienvenido a mi portafolio",
                 aboutDesc: "Descubre mis creaciones, mis proyectos y mi universo visual. BRK Creative es un estudio especializado en postproducción de alta calidad, Motion Design de impacto y animación 3D. Destacamos su marca a través de un riguroso conocimiento técnico y una creatividad sin límites.",
+                creationsTitle: "NUESTRAS CREACIONES",
+                filterAll: "Todos",
                 tarifsTitle: "TARIFAS",
                 tarifsSub: "Soluciones claras y transparentes adaptadas a sus ambiciones.",
                 opt1Title: "OPCIÓN 1: PROFESIONAL",
@@ -748,11 +868,11 @@
                 mentions: `<h3>Avisos Legales</h3>
                            <h4>1. Edición del Sitio</h4><p>Este sitio web está editado y gestionado por el estudio <strong>BRK Creative</strong>.</p>
                            <h4>2. Alojamiento</h4><p>Este sitio está alojado por GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, EE. UU.</p>
-                           <h4>3. Propiedad Intelectual</h4><p>Todo el contenido (texto, animaciones 3D, videos, diseños gráficos) es propiedad exclusiva de BRK Creative.</p>`,
+                           <h4>3. Propriedad Intelectual</h4><p>Todo el contenido (texto, animaciones 3D, videos, diseños gráficos) es propiedad exclusiva de BRK Creative.</p>`,
                 confidentialite: `<h3>Política de privacidad</h3>
                                   <h4>1. Datos recolectados</h4><p>Este es un sitio web de portafolio. No recolectamos datos personales sin su consentimiento.</p>
                                   <h4>2. Uso de información</h4><p>La información enviada para solicitudes de presupuesto se utiliza únicamente para la propuesta comercial.</p>`,
-                conditions: `<h3>Condiciones de uso</h3>
+                conditions: `<h3>Conditions de uso</h3>
                              <h4>1. Objeto</h4><p>Este sitio tiene como objeto presentar los servicios profesionales y creativos de BRK Creative.</p>
                              <h4>2. Responsabilidad</h4><p>BRK Creative no se hace responsable de las interrupciones temporales del servicio del sitio.</p>`,
                 cookies: `<h3>Gestionar preferencias de cookies</h3>
@@ -770,6 +890,8 @@
             document.getElementById('trans-about-sub').textContent = data.aboutSub;
             document.getElementById('trans-welcome-title').textContent = data.welcomeTitle;
             document.getElementById('trans-about-desc').textContent = data.aboutDesc;
+            document.getElementById('trans-creations-title').textContent = data.creationsTitle;
+            document.getElementById('filter-all').textContent = data.filterAll;
             document.getElementById('trans-tarifs-title').textContent = data.tarifsTitle;
             document.getElementById('trans-tarifs-sub').textContent = data.tarifsSub;
             document.getElementById('trans-opt1-title').textContent = data.opt1Title;
@@ -789,8 +911,15 @@
             document.getElementById('trans-r2').textContent = data.r2;
             document.getElementById('trans-q3').textContent = data.q3;
             document.getElementById('trans-r3').textContent = data.r3;
-            document.getElementById('trans-footer-copy').textContent = data.footerCopy;
             
+            document.getElementById('trans-q1-dup').textContent = data.q1;
+            document.getElementById('trans-r1-dup').textContent = data.r1;
+            document.getElementById('trans-q2-dup').textContent = data.q2;
+            document.getElementById('trans-r2-dup').textContent = data.r2;
+            document.getElementById('trans-q3-dup').textContent = data.q3;
+            document.getElementById('trans-r3-dup').textContent = data.r3;
+
+            document.getElementById('trans-footer-copy').textContent = data.footerCopy;
             document.getElementById('trans-footer-legal').textContent = data.footerLegal;
             document.getElementById('trans-footer-conf').textContent = data.footerConf;
             document.getElementById('trans-footer-cond').textContent = data.footerCond;
