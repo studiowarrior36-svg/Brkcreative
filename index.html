@@ -23,7 +23,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
@@ -453,50 +453,90 @@
             border: none;
         }
 
-        /* --- MODAL SÉLECTION PAYS --- */
-        .modal-pays { 
+        /* --- MODAL PAYS (STYLE APPLE) --- */
+        .modal-pays-apple { 
             display: none; 
             position: fixed; 
             top: 0; 
             left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(5, 11, 20, 0.95); 
+            width: 100vw; 
+            height: 100vh; 
+            background: var(--bg-principal); 
             z-index: 3000; 
-            justify-content: center; 
+            flex-direction: column; 
             align-items: center; 
-            padding: 20px; 
+            padding: 60px 5%; 
+            overflow-y: auto;
         }
 
-        .modal-content-pays { 
-            background: #0c1524; 
-            padding: 40px; 
-            border-radius: 20px; 
-            width: 100%; 
-            max-width: 500px; 
-            color: white; 
-            text-align: center; 
-            border: 1px solid #007bff; 
+        .modal-apple-header {
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            margin-bottom: 50px;
+            text-align: left;
+            border-bottom: 1px solid var(--bordure);
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .country-grid { 
-            display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 15px; 
-            margin: 30px 0; 
+        .modal-apple-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--texte-principal);
         }
 
-        .country-item { 
-            cursor: pointer; 
-            padding: 15px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            border-radius: 8px; 
-            transition: 0.3s; 
+        .btn-close-apple {
+            font-size: 2.5rem;
+            background: none;
+            border: none;
+            color: var(--texte-secondaire);
+            cursor: pointer;
+            line-height: 1;
         }
 
-        .country-item:hover { 
-            border-color: #007bff; 
-            background: #050b14; 
+        .btn-close-apple:hover {
+            color: var(--texte-principal);
+        }
+
+        .modal-apple-content {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+        }
+
+        .region-section h3 {
+            color: var(--texte-muet);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .region-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .region-section li {
+            margin-bottom: 15px;
+        }
+
+        .region-section li span {
+            cursor: pointer;
+            color: var(--texte-principal);
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .region-section li span:hover {
+            color: var(--bleu-accent);
+            text-decoration: underline;
         }
 
         /* --- FOOTER --- */
@@ -540,6 +580,11 @@
             font-weight: 600;
             padding-left: 5px;
             border-left: 1px solid var(--bordure);
+            transition: color 0.3s;
+        }
+        
+        .gabon-footer-label:hover {
+            color: var(--texte-principal);
         }
 
         /* --- MEDIA QUERIES MOBILE --- */
@@ -564,6 +609,17 @@
             footer { flex-direction: column; text-align: center; gap: 15px; }
             .footer-legal { justify-content: center; gap: 12px; }
             .gabon-footer-label { border-left: none; padding-left: 0; width: 100%; display: block; margin-top: 5px;}
+            
+            .modal-apple-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .btn-close-apple {
+                position: absolute;
+                top: -10px;
+                right: 0;
+            }
         }
     </style>
 </head>
@@ -686,15 +742,57 @@
         </div>
     </div>
 
-    <div id="countryModal" class="modal-pays">
-        <div class="modal-content-pays">
-            <h2>Choisissez votre pays</h2>
-            <div class="country-grid">
-                <div class="country-item" onclick="setLocale('fr', 'Gabon')">Gabon (Français)</div>
-                <div class="country-item" onclick="setLocale('en', 'UK')">United Kingdom (English)</div>
-                <div class="country-item" onclick="setLocale('ar', 'Maroc')">Maroc (العربية)</div>
+    <!-- Modale de sélection du pays (Style Apple) -->
+    <div id="countryModal" class="modal-pays-apple">
+        <div class="modal-apple-header">
+            <h2>Choisissez votre pays ou région</h2>
+            <button class="btn-close-apple" onclick="closeCountryModal()">&times;</button>
+        </div>
+        
+        <div class="modal-apple-content">
+            <div class="region-section">
+                <h3>Afrique</h3>
+                <ul>
+                    <li><span onclick="setLocale('fr', 'Gabon')">Gabon (Français)</span></li>
+                    <li><span onclick="setLocale('fr', 'Côte d\'Ivoire')">Côte d'Ivoire (Français)</span></li>
+                    <li><span onclick="setLocale('fr', 'Sénégal')">Sénégal (Français)</span></li>
+                    <li><span onclick="setLocale('en', 'South Africa')">South Africa (English)</span></li>
+                    <li><span onclick="setLocale('ar', 'Maroc')">Maroc (العربية)</span></li>
+                </ul>
             </div>
-            <button onclick="closeCountryModal()" style="background:transparent; border:none; color:#a0aec0; cursor:pointer; margin-top: 15px;">Fermer</button>
+            
+            <div class="region-section">
+                <h3>Europe</h3>
+                <ul>
+                    <li><span onclick="setLocale('fr', 'France')">France (Français)</span></li>
+                    <li><span onclick="setLocale('en', 'United Kingdom')">United Kingdom (English)</span></li>
+                    <li><span onclick="setLocale('es', 'España')">España (Español)</span></li>
+                    <li><span onclick="setLocale('de', 'Deutschland')">Deutschland (Deutsch)</span></li>
+                    <li><span onclick="setLocale('it', 'Italia')">Italia (Italiano)</span></li>
+                </ul>
+            </div>
+            
+            <div class="region-section">
+                <h3>Amériques</h3>
+                <ul>
+                    <li><span onclick="setLocale('en', 'United States')">United States (English)</span></li>
+                    <li><span onclick="setLocale('en', 'Canada (English)')">Canada (English)</span></li>
+                    <li><span onclick="setLocale('fr', 'Canada (Français)')">Canada (Français)</span></li>
+                    <li><span onclick="setLocale('es', 'México')">México (Español)</span></li>
+                    <li><span onclick="setLocale('pt', 'Brasil')">Brasil (Português)</span></li>
+                </ul>
+            </div>
+            
+            <div class="region-section">
+                <h3>Asie-Pacifique</h3>
+                <ul>
+                    <li><span onclick="setLocale('zh', '中国大陆')">中国大陆 (简体中文)</span></li>
+                    <li><span onclick="setLocale('ja', '日本')">日本 (日本語)</span></li>
+                    <li><span onclick="setLocale('en', 'Australia')">Australia (English)</span></li>
+                    <li><span onclick="setLocale('ko', '대한민국')">대한민국 (한국어)</span></li>
+                    <li><span onclick="setLocale('en', 'India')">India (English)</span></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -763,7 +861,6 @@
                 footerLegal: "Mentions Légales",
                 footerConf: "Politique de confidentialité",
                 
-                // Textes pour la fenêtre d'affichage (Modals)
                 mentions: "<h3>Mentions Légales</h3><p><strong>Éditeur :</strong> Warrior Studio.</p><p><strong>Hébergement :</strong> GitHub Pages (GitHub Inc., San Francisco, CA, États-Unis).</p><p>Tous les projets et visuels affichés sont soumis au droit d'auteur.</p>",
                 confidentialite: "<h3>Politique de confidentialité</h3><p>Nous respectons votre vie privée. Ce site ne collecte aucune donnée à des fins publicitaires ou de traçage commercial invasif.</p>",
                 engagement: "<h3>Engagement de confidentialité</h3><p>Warrior Studio s'engage formellement à sécuriser et ne jamais divulguer les fichiers vidéos bruts, rushes ou éléments d'identité de marque confiés lors de nos productions.</p>",
@@ -782,20 +879,42 @@
         // -----------------------------------------
         // LOGIQUE DE SÉLECTION DE PAYS
         // -----------------------------------------
-        function openCountryModal() { document.getElementById('countryModal').style.display = 'flex'; }
-        function closeCountryModal() { document.getElementById('countryModal').style.display = 'none'; }
+        function openCountryModal() { 
+            document.getElementById('countryModal').style.display = 'flex'; 
+            document.body.style.overflow = 'hidden'; // Empêche le scroll de la page derrière
+        }
+        
+        function closeCountryModal() { 
+            document.getElementById('countryModal').style.display = 'none'; 
+            document.body.style.overflow = 'auto'; // Réactive le scroll
+        }
 
         function setLocale(lang, country) {
             const root = document.getElementById('html-root');
             root.lang = lang;
             root.dir = (lang === 'ar') ? 'rtl' : 'ltr';
 
-            // Mettre à jour le texte du pays dans le footer
-            document.getElementById('current-country-label').textContent = country + " (" + (lang === 'fr' ? 'Français' : lang === 'en' ? 'English' : 'العربية') + ")";
+            // Déterminer le nom de la langue affichée
+            let langName = '';
+            if(lang === 'fr') langName = 'Français';
+            else if(lang === 'en') langName = 'English';
+            else if(lang === 'es') langName = 'Español';
+            else if(lang === 'de') langName = 'Deutsch';
+            else if(lang === 'it') langName = 'Italiano';
+            else if(lang === 'pt') langName = 'Português';
+            else if(lang === 'zh') langName = '简体中文';
+            else if(lang === 'ja') langName = '日本語';
+            else if(lang === 'ko') langName = '한국어';
+            else if(lang === 'ar') langName = 'العربية';
+            
+            // Si le pays contient déjà la parenthèse (ex: Canada (English)), on ne l'ajoute pas deux fois
+            if(country.includes('(')) {
+                document.getElementById('current-country-label').textContent = country;
+            } else {
+                document.getElementById('current-country-label').textContent = country + " (" + langName + ")";
+            }
 
             console.log("Pays sélectionné : " + country + " | Langue : " + lang);
-            
-            // Placer ici l'appel pour recharger les textes depuis l'objet "translations" si multilangue futur
             
             closeCountryModal();
         }
