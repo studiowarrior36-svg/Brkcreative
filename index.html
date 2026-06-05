@@ -4,23 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ==========================================
-       OPTIMISATION SEO & RÉSEAUX SOCIAUX (OG)
-       ========================================== -->
     <title>BRK Creative — Post-Production, Motion Design & 3D</title>
-    <meta name="description" content="Studio de création spécialisé dans la post-production vidéo de haute qualité, le Motion Design d'impact et l'animation 3D narratologique.">
-    <meta name="keywords" content="BRK Creative, post-production, montage video, motion design, animation 3d, blender, premiere pro, after effects, portfolio">
-    <meta name="author" content="BRK Creative">
+    <meta name="description" content="Studio de création spécialisé dans la post-production vidéo de haute qualité, le Motion Design d'impact et l'animation 3D.">
     
-    <!-- Open Graph (Aperçu WhatsApp, Facebook, Messenger) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="BRK Creative — Portfolio Professionnel">
     <meta property="og:description" content="Découvrez mes créations et projets en post-production visuelle, motion design et modélisation 3D.">
-    <!-- Remplace 'TON-IMAGE-DE-PARTAGE.png' par le nom de ton fichier logo ou image -->
     <meta property="og:image" content="https://studiowarrior36-svg.github.io/Brkcreative/Method Draw Image.png">
     <meta property="og:url" content="https://studiowarrior36-svg.github.io/Brkcreative/">
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
 
     <style>
@@ -37,9 +29,9 @@
 
         :root {
             --bg-principal: #050b14;
-            --bg-navbar: rgba(5, 11, 20, 0.95);
+            --bg-navbar: #050b14;
             --bg-carte: #0c1524;
-            --bg-tarifs: #081225;
+            --bg-alternatif: #081225;
             --texte-principal: #ffffff;
             --texte-secondaire: #a0aec0;
             --texte-muet: #718096;
@@ -55,41 +47,28 @@
             overflow-x: hidden;
         }
 
-        @keyframes headerFadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* --- NAVBAR ALIGNÉE ET FLUIDE --- */
+        /* --- NAVBAR : ELLE MONTE AVEC LE SITE (POSITION ABSOLUTE/RELATIVE, PAS STICKY) --- */
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 5%;
+            padding: 30px 5%;
             background-color: var(--bg-navbar);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
             border-bottom: 1px solid var(--bordure);
-            animation: headerFadeUp 0.6s ease out both;
+            position: relative; /* Modifié pour remonter au défilement */
+            width: 100%;
         }
 
-        /* Logo et slogan alignés côte à côte à gauche */
+        /* À gauche : Logo + Slogan */
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .logo-img {
-            width: 90px;
-            max-height: 45px;
+            width: 95px;
+            max-height: 48px;
             object-fit: contain;
             display: block;
         }
@@ -101,25 +80,23 @@
             font-weight: 700;
             text-transform: uppercase;
             border-left: 2px solid var(--bordure);
-            padding-left: 15px;
+            padding-left: 20px;
         }
 
-        /* Commandes regroupées à droite */
+        /* À droite : Bouton Travailler avec moi seul */
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 20px;
         }
 
         .btn-cta-nav {
             background-color: var(--bleu-accent);
             color: white;
             text-decoration: none;
-            padding: 10px 22px;
+            padding: 12px 26px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.9rem;
-            transition: background-color 0.2s, transform 0.2s;
             white-space: nowrap;
         }
 
@@ -128,78 +105,12 @@
             transform: scale(1.02);
         }
 
-        .dropdown-pays-container {
-            position: relative;
-        }
-
-        .dropdown-trigger {
-            background: transparent;
-            color: var(--texte-principal);
-            border: 1px solid var(--bleu-accent);
-            padding: 9px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-
-        .dropdown-trigger:hover {
-            background-color: rgba(0, 123, 255, 0.1);
-        }
-
-        .dropdown-menu-pays {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 45px;
-            background-color: var(--bg-carte);
-            border: 1px solid var(--bleu-accent);
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 15px 40px var(--shadow-color);
-            width: max-content;
-            max-width: 90vw;
-            max-height: 70vh;
-            overflow-y: auto;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            text-align: left;
-        }
-
-        .dropdown-pays-container:hover .dropdown-menu-pays {
-            display: grid;
-        }
-
-        .menu-col h4 {
-            color: var(--bleu-accent);
-            font-size: 0.8rem;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-
-        .menu-col a {
-            display: block;
-            color: var(--texte-secondaire);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .menu-col a:hover {
-            color: var(--texte-principal);
-        }
-
         /* --- SECTION D'ACCUEIL --- */
         .presentation-section {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 10%;
+            padding: 120px 10% 80px 10%;
             text-align: center;
         }
 
@@ -238,7 +149,7 @@
 
         /* --- CRÉATIONS --- */
         .creations-section {
-            background-color: var(--bg-tarifs);
+            background-color: var(--bg-alternatif);
             padding: 100px 10%;
             border-top: 1px solid var(--bordure);
         }
@@ -323,7 +234,7 @@
             font-size: 0.85rem;
         }
 
-        /* --- SECTION NOS OPTIONS (ANCIENNEMENT TARIFS) --- */
+        /* --- SECTION NOS OPTIONS (MODIFIÉ) --- */
         .tarifs-section {
             background-color: var(--bg-principal);
             padding: 120px 10%;
@@ -363,7 +274,6 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .badge-premium {
@@ -377,18 +287,12 @@
             padding: 4px 14px;
             border-radius: 20px;
             letter-spacing: 1px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .tarif-card:hover {
             border-color: var(--bleu-accent);
             box-shadow: 0 20px 40px var(--shadow-color);
-            transform: translateY(-8px);
-        }
-
-        .tarif-card.active-premium:hover .badge-premium {
-            opacity: 1;
+            transform: translateY(-5px);
         }
 
         .tarif-card h3 {
@@ -401,7 +305,6 @@
             color: var(--texte-secondaire);
             font-size: 0.95rem;
             line-height: 1.6;
-            flex-grow: 1;
             text-align: left;
         }
 
@@ -422,10 +325,10 @@
             background-color: var(--bleu-hover);
         }
 
-        /* --- SECTION TEMOIGNAGES (NETTE SÉPARATION & ENCHAÎNEMENT FLUIDE) --- */
+        /* --- SECTION TÉMOIGNAGES (ENCHAÎNEMENT FLUIDE ET ESPACÉ) --- */
         .testimonials-section {
-            padding: 120px 10%; /* Grand espacement par rapport aux options pour ne pas coller */
-            background-color: var(--bg-tarifs);
+            padding: 120px 10%; /* Gros espacement pour éviter d'être collé aux options */
+            background-color: var(--bg-alternatif);
             border-top: 1px solid var(--bordure);
             border-bottom: 1px solid var(--bordure);
             text-align: center;
@@ -437,41 +340,44 @@
             letter-spacing: 1px;
         }
 
-        /* Boîte d'affichage d'un témoignage à la fois */
+        /* Conteneur à taille fixe pour accueillir 1 témoignage à la fois */
         .testimonials-wrapper {
             position: relative;
-            height: 180px; /* Ajusté pour laisser passer un bloc proprement sans chevauchement */
-            overflow: hidden;
-            max-width: 750px;
+            max-width: 700px;
             margin: 0 auto;
+            height: 180px; 
         }
 
-        /* Animation verticale fluide un par un */
-        .testimonials-scroll-container {
-            display: flex;
-            flex-direction: column;
-            animation: scrollTestimonials 12s cubic-bezier(0.85, 0, 0.15, 1) infinite;
-        }
-
-        .testimonials-wrapper:hover .testimonials-scroll-container {
-            animation-play-state: paused;
-        }
-
-        .testimonial-card {
+        /* Animation d'enchaînement fondu/défilement un par un */
+        .testimonial-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
             background: var(--bg-carte);
             border: 1px solid var(--bordure);
             padding: 35px;
             border-radius: 12px;
             text-align: left;
             box-shadow: 0 10px 30px var(--shadow-color);
-            height: 160px; /* Hauteur fixe identique pour un défilement parfait */
-            margin-bottom: 20px; /* Espace net entre chaque témoignage */
             display: flex;
             flex-direction: column;
             justify-content: center;
+            animation: cycleTestimonials 12s infinite ease-in-out;
         }
 
-        .testimonial-card .quote {
+        /* Décalage temporel pour enchaîner le 1er puis le 2e */
+        .testimonial-item:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .testimonial-item:nth-child(2) {
+            animation-delay: 6s;
+        }
+
+        .testimonial-item .quote {
             color: var(--texte-principal);
             font-style: italic;
             line-height: 1.6;
@@ -479,27 +385,27 @@
             margin-bottom: 12px;
         }
 
-        .testimonial-card .client-name {
+        .testimonial-item .client-name {
             color: var(--bleu-accent);
             font-size: 0.9rem;
             letter-spacing: 1px;
         }
 
-        .testimonial-card .client-role {
+        .testimonial-item .client-role {
             color: var(--texte-muet);
             font-size: 0.8rem;
             display: block;
             margin-top: 2px;
         }
 
-        /* Animation de transition nette par paliers fixes */
-        @keyframes scrollTestimonials {
-            0%, 20% { transform: translateY(0); }
-            45%, 65% { transform: translateY(-180px); }
-            90%, 100% { transform: translateY(0); }
+        /* Animation pure pour l'enchaînement un par un */
+        @keyframes cycleTestimonials {
+            0%, 45% { opacity: 1; z-index: 2; }
+            50%, 95% { opacity: 0; z-index: 1; }
+            100% { opacity: 1; z-index: 2; }
         }
 
-        /* --- FENÊTRES MODALS (MENTIONS LÉGALES / CONFIDENTIALITÉ) --- */
+        /* --- FENÊTRES MODALS --- */
         .modal-mentions {
             display: none;
             position: fixed;
@@ -553,12 +459,12 @@
             border: none;
         }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER STYLE APPLE AVEC TOUS LES LIENS REQUIS & PAYS NON BLEU --- */
         footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 35px 5%;
+            padding: 40px 5%;
             border-top: 1px solid var(--bordure);
             background-color: var(--bg-principal);
             flex-wrap: wrap;
@@ -566,14 +472,15 @@
         }
 
         .footer-copyright {
-            color: var(--texte-secondaire);
-            font-size: 0.9rem;
+            color: var(--texte-muet);
+            font-size: 0.85rem;
         }
 
         .footer-legal {
             display: flex;
-            gap: 25px;
+            gap: 18px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .footer-legal a {
@@ -587,44 +494,42 @@
             color: var(--texte-principal);
         }
 
-        /* --- MEDIA QUERIES (ADAPTATION MOBILE) --- */
+        /* Style normal pour le Gabon (Pas en bleu, pas de bouton agressif) */
+        .gabon-footer-label {
+            color: var(--texte-secondaire);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding-left: 5px;
+            border-left: 1px solid var(--bordure);
+        }
+
+        /* --- MEDIA QUERIES MOBILE --- */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
+                gap: 20px;
+                padding: 20px;
                 text-align: center;
             }
             .logo-container {
                 flex-direction: column;
-                gap: 5px;
+                gap: 8px;
             }
             .slogan-nav {
                 border-left: none;
                 padding-left: 0;
             }
-            .nav-controls {
-                width: 100%;
-                justify-content: center;
-                gap: 15px;
-            }
             .presentation-section { padding: 60px 20px; }
             .presentation-text h1 { font-size: 2.2rem; }
             .creations-section, .tarifs-section, .testimonials-section { padding: 60px 20px; }
-            .testimonials-wrapper { height: 210px; }
-            .testimonial-card { height: 190px; }
-            @keyframes scrollTestimonials {
-                0%, 20% { transform: translateY(0); }
-                45%, 65% { transform: translateY(-210px); }
-                90%, 100% { transform: translateY(0); }
-            }
-            footer { flex-direction: column; text-align: center; }
+            footer { flex-direction: column; text-align: center; gap: 15px; }
+            .footer-legal { justify-content: center; gap: 12px; }
+            .gabon-footer-label { border-left: none; padding-left: 0; width: 100%; display: block; margin-top: 5px;}
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR ENTIÈREMENT RESTURCTURÉE SELON TES EXIGENCES -->
     <header class="navbar">
         <div class="logo-container">
             <img src="Method Draw Image.png" alt="Logo BRK Creative" class="logo-img">
@@ -632,32 +537,10 @@
         </div>
         
         <div class="nav-controls">
-            <!-- Travailler avec moi est placé juste à côté à droite -->
             <a href="mailto:Studiowarrior36@gmail.com?subject=Demande%20de%20collaboration%20-%20BRK%20Creative" class="btn-cta-nav" id="trans-nav-cta">Travailler avec moi</a>
-            
-            <!-- Le sélecteur de pays arrive tout à la fin à droite -->
-            <div class="dropdown-pays-container">
-                <button class="dropdown-trigger" id="country-label">Gabon</button>
-                <div class="dropdown-menu-pays">
-                    <div class="menu-col">
-                        <h4>AFRIQUE</h4>
-                        <a onclick="changeCountry('Gabon', 'fr')">Gabon</a>
-                        <a onclick="changeCountry('Côte d\'Ivoire', 'fr')">Côte d'Ivoire</a>
-                        <a onclick="changeCountry('Sénégal', 'fr')">Sénégal</a>
-                        <a onclick="changeCountry('Cameroun', 'fr')">Cameroun</a>
-                    </div>
-                    <div class="menu-col">
-                        <h4>EUROPE & AMÉRIQUE</h4>
-                        <a onclick="changeCountry('France', 'fr')">France</a>
-                        <a onclick="changeCountry('États-Unis', 'en')">États-Unis</a>
-                        <a onclick="changeCountry('Canada', 'en')">Canada</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </header>
 
-    <!-- SECTION D'ACCUEIL -->
     <section class="presentation-section">
         <div class="presentation-text">
             <span class="subtitle" id="trans-about-sub">À PROPOS</span>
@@ -667,7 +550,6 @@
         </div>
     </section>
 
-    <!-- SECTION : NOS CRÉATIONS -->
     <section class="creations-section">
         <div class="creations-header">
             <h2 id="trans-creations-title">NOS CRÉATIONS</h2>
@@ -676,11 +558,11 @@
                 <button class="filter-btn" onclick="filterCreations('postprod')" id="filter-postprod">Post-Production</button>
                 <button class="filter-btn" onclick="filterCreations('motion')" id="filter-motion">Motion Design</button>
                 <button class="filter-btn" onclick="filterCreations('3d')" id="filter-3d">Animation 3D</button>
-                <button class="filter-btn" onclick="filterCreations('graphique')" id="filter-graphique">Design Graphique</button>
+                <button class="filter-btn" onclick="filterCreations('graphique')" id="filter-graphique">Design Graphic</button>
             </div>
         </div>
 
-        <div class="creations-grid" id="creations-container-grid">
+        <div class="creations-grid">
             <div class="creation-item" data-category="postprod">
                 <div class="creation-media">
                     <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80" alt="Cinematic Edit">
@@ -710,7 +592,7 @@
             </div>
             <div class="creation-item" data-category="graphique">
                 <div class="creation-media">
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=500&q=80" alt="Design Graphique">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=500&q=80" alt="Design Graphic">
                 </div>
                 <div class="creation-info">
                     <h3 id="trans-proj4-title">Visual Identity</h3>
@@ -720,7 +602,6 @@
         </div>
     </section>
 
-    <!-- SECTION NOS OPTIONS (MODIFIÉ) -->
     <section class="tarifs-section">
         <div class="tarifs-header">
             <h2 id="trans-tarifs-title">NOS OPTIONS</h2>
@@ -734,7 +615,7 @@
                 <a href="mailto:Studiowarrior36@gmail.com?subject=Demande%20de%20devis%20-%20Option%20Professionnelle" class="btn-canal id-trans-btn">Demander un devis</a>
             </div>
 
-            <div class="tarif-card active-premium">
+            <div class="tarif-card">
                 <div class="badge-premium" id="trans-badge">CONSEILLÉ</div>
                 <h3 id="trans-opt2-title">OPTION 2 : BUSINESS PREMIUM</h3>
                 <p class="tarif-desc" id="trans-opt2-desc">Prise en charge complète, déploiement d'identité visuelle intégrale, animations graphiques avancées, et livrables prioritaires avec suivi personnalisé.</p>
@@ -743,28 +624,22 @@
         </div>
     </section>
 
-    <!-- SECTION TEMOIGNAGES (ENCHAÎNEMENT INDIVIDUEL ET FLUIDE) -->
     <section class="testimonials-section">
         <h2 id="trans-testi-title">CE QUE DISENT NOS CLIENTS</h2>
         <div class="testimonials-wrapper">
-            <div class="testimonials-scroll-container">
-                <!-- Premier témoignage complet -->
-                <div class="testimonial-card">
-                    <p class="quote" id="trans-q1">"Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet du début à la fin."</p>
-                    <h4 class="client-name">LUCAS MANDJI</h4>
-                    <span class="client-role" id="trans-r1">Réalisateur Indépendant</span>
-                </div>
-                <!-- Deuxième témoignage complet -->
-                <div class="testimonial-card">
-                    <p class="quote" id="trans-q2">"L'équipe a su capter instantanément l'essence même de notre marque. Le rendu visuel final dépasse de loin nos attentes."</p>
-                    <h4 class="client-name">NDJI</h4>
-                    <span class="client-role" id="trans-r2">Producteur Indépendant</span>
-                </div>
+            <div class="testimonial-item">
+                <p class="quote" id="trans-q1">"Un travail de post-production d'une qualité rare. Le rythme du montage a transcendé notre projet du début à la fin."</p>
+                <h4 class="client-name">LUCAS MANDJI</h4>
+                <span class="client-role" id="trans-r1">Réalisateur Indépendant</span>
+            </div>
+            <div class="testimonial-item">
+                <p class="quote" id="trans-q2">"L'équipe a su capter instantanément l'essence même de notre marque. Le rendu visuel final dépasse de loin nos attentes."</p>
+                <h4 class="client-name">NDJI</h4>
+                <span class="client-role" id="trans-r2">Producteur Indépendant</span>
             </div>
         </div>
     </section>
 
-    <!-- MODAL PRINCIPAL POUR LES TEXTES DYNAMIQUES (MENTIONS / PRIVACY) -->
     <div id="legalModal" class="modal-mentions">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -772,14 +647,20 @@
         </div>
     </div>
 
-    <!-- FOOTER AVEC RETOUR DES LIENS REQUIS -->
     <footer>
         <div class="footer-copyright" id="trans-footer-copy">
             © 2026 BRK Creative — Tous droits réservés.
         </div>
+        
         <div class="footer-legal">
             <a onclick="openModal('mentions')" id="trans-footer-legal">Mentions Légales</a>
             <a onclick="openModal('confidentialite')" id="trans-footer-conf">Politique de confidentialité</a>
+            <a onclick="openModal('engagement')">Engagement de confidentialité</a>
+            <a onclick="openModal('cookies')">Utilisation des cookies</a>
+            <a onclick="openModal('conditions')">Conditions d'utilisation</a>
+            <a onclick="openModal('plan')">Plan du site</a>
+            
+            <span class="gabon-footer-label">Gabon</span>
         </div>
     </footer>
 
@@ -796,7 +677,6 @@
             });
         }
 
-        // Base de données contenant l'ensemble de tes textes juridiques pour réapparition instantanée
         const translations = {
             fr: {
                 slogan: "CRÉER POUR INSPIRER",
@@ -806,7 +686,7 @@
                 aboutDesc: "Découvrez mes créations, mes projets et mon univers visuel. BRK Creative est un studio spécialisé dans la post-production de haute qualité, le Motion Design d'impact et l'animation 3D. Nous mettons en valeur votre marque grâce à un savoir-faire technique rigoureux et une créativité sans limite.",
                 creationsTitle: "NOS CRÉATIONS",
                 filterAll: "Tous",
-                filterGraphique: "Design Graphique",
+                filterGraphique: "Design Graphic",
                 proj4Title: "Visual Identity",
                 proj4Desc: "Conception de chartes graphiques uniques et logotypes à fort impact.",
                 tarifsTitle: "NOS OPTIONS",
@@ -825,76 +705,16 @@
                 footerCopy: "© 2026 BRK Creative — Tous droits réservés.",
                 footerLegal: "Mentions Légales",
                 footerConf: "Politique de confidentialité",
-                // Contenus des popups en français
-                mentions: "<h3>Mentions Légales</h3><p><strong>Éditeur du site :</strong> BRK Creative Studio.</p><p><strong>Hébergement :</strong> GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis).</p><p><strong>Propriété intellectuelle :</strong> L'ensemble des contenus présents sur ce site (textes, images, vidéos, animations) est la propriété exclusive de BRK Creative ou de leurs auteurs respectifs.</p>",
-                confidentialite: "<h3>Politique de confidentialité</h3><p><strong>Collecte des données :</strong> Ce site ne collecte aucune donnée personnelle automatisée à l'insu de ses visiteurs et n'utilise aucun cookie de traçage publicitaire.</p><p><strong>Formulaires & Contact :</strong> Lorsque vous initiez un contact par email, vos informations de messagerie sont uniquement utilisées dans le cadre strict de l'échange commercial et de la réalisation de vos devis.</p>"
-            },
-            en: {
-                slogan: "CREATE TO INSPIRE",
-                navCta: "Work with me",
-                aboutSub: "ABOUT US",
-                welcomeTitle: "Welcome to my portfolio",
-                aboutDesc: "Discover my creations, my projects, and my visual universe. BRK Creative is a studio specializing in high-quality post-production, impactful Motion Design, and 3D animation. We showcase your brand through rigorous technical expertise and boundless creativity.",
-                creationsTitle: "OUR CREATIONS",
-                filterAll: "All",
-                filterGraphique: "Graphic Design",
-                proj4Title: "Visual Identity",
-                proj4Desc: "Designing unique corporate designs and high-impact logos.",
-                tarifsTitle: "OUR OPTIONS",
-                tarifsSub: "Clear and transparent solutions tailored to your ambitions.",
-                opt1Title: "OPTION 1: PROFESSIONAL",
-                opt1Desc: "Rates vary depending on the complexity and specific needs of the project. Contact our team for a fully customized quote.",
-                opt2Title: "OPTION 2: BUSINESS PREMIUM",
-                opt2Desc: "Full support, comprehensive visual identity deployment, advanced motion graphics, and priority deliverables with personalized tracking.",
-                badge: "RECOMMENDED",
-                btn: "Request a quote",
-                testiTitle: "WHAT OUR CLIENTS SAY",
-                q1: '"Post-production work of rare quality. The rhythm of the editing transcended our project from start to finish."',
-                r1: "Freelance Filmmaker",
-                q2: '"The team instantly captured the core essence of our brand. The final visual result far exceeded our expectations."',
-                r2: "Independent Producer",
-                footerCopy: "© 2026 BRK Creative — All rights reserved.",
-                footerLegal: "Legal Notices",
-                footerConf: "Privacy Policy",
-                // Contenus des popups en anglais
-                mentions: "<h3>Legal Notices</h3><p><strong>Publisher:</strong> BRK Creative Studio.</p><p><strong>Hosting:</strong> GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr St, San Francisco, CA 94107, USA).</p><p><strong>Intellectual Property:</strong> All content on this website (text, images, videos, animations) is the exclusive property of BRK Creative or its respective creators.</p>",
-                confidentialite: "<h3>Privacy Policy</h3><p><strong>Data Collection:</strong> This website does not track or collect any automated personal information from visitors, and does not use advertising tracking cookies.</p><p><strong>Contact:</strong> When contacting us via email, your email data is solely used to handle your commercial inquiries and complete custom project estimates.</p>"
+                
+                // Textes pour la fenêtre d'affichage (Modals)
+                mentions: "<h3>Mentions Légales</h3><p><strong>Éditeur :</strong> BRK Creative Studio.</p><p><strong>Hébergement :</strong> GitHub Pages (GitHub Inc., San Francisco, CA, États-Unis).</p><p>Tous les projets et visuels affichés sont soumis au droit d'auteur.</p>",
+                confidentialite: "<h3>Politique de confidentialité</h3><p>Nous respectons votre vie privée. Ce site ne collecte aucune donnée à des fins publicitaires ou de traçage commercial invasif.</p>",
+                engagement: "<h3>Engagement de confidentialité</h3><p>BRK Creative s'engage formellement à sécuriser et ne jamais divulguer les fichiers vidéos bruts, rushes ou éléments d'identité de marque confiés lors de nos productions.</p>",
+                cookies: "<h3>Utilisation des cookies</h3><p>Ce site utilise uniquement des cookies techniques nécessaires au bon fonctionnement de la plateforme et à l'affichage linguistique fluide.</p>",
+                conditions: "<h3>Conditions d'utilisation</h3><p>En naviguant sur ce portfolio, vous acceptez de respecter l'intégrité des créations visuelles présentes. Toute copie ou réutilisation sans accord écrit est interdite.</p>",
+                plan: "<h3>Plan du site</h3><p>• Accueil / À Propos<br>• Nos Créations (Showreels, Animation, Motion)<br>• Nos Options (Formules de Devis)<br>• Témoignages Clients</p>"
             }
         };
-
-        function changeCountry(countryName, langCode) {
-            currentLang = langCode;
-            document.getElementById('country-label').textContent = countryName;
-            const data = translations[langCode] || translations['en']; 
-            
-            document.getElementById('trans-slogan').textContent = data.slogan;
-            document.getElementById('trans-nav-cta').textContent = data.navCta;
-            document.getElementById('trans-about-sub').textContent = data.aboutSub;
-            document.getElementById('trans-welcome-title').textContent = data.welcomeTitle;
-            document.getElementById('trans-about-desc').textContent = data.aboutDesc;
-            document.getElementById('trans-creations-title').textContent = data.creationsTitle;
-            document.getElementById('filter-all').textContent = data.filterAll;
-            document.getElementById('filter-graphique').textContent = data.filterGraphique;
-            document.getElementById('trans-proj4-title').textContent = data.proj4Title;
-            document.getElementById('trans-proj4-desc').textContent = data.proj4Desc;
-            document.getElementById('trans-tarifs-title').textContent = data.tarifsTitle;
-            document.getElementById('trans-tarifs-sub').textContent = data.tarifsSub;
-            document.getElementById('trans-opt1-title').textContent = data.opt1Title;
-            document.getElementById('trans-opt1-desc').textContent = data.opt1Desc;
-            document.getElementById('trans-opt2-title').textContent = data.opt2Title;
-            document.getElementById('trans-opt2-desc').textContent = data.opt2Desc;
-            document.getElementById('trans-badge').textContent = data.badge;
-            
-            document.querySelectorAll('.id-trans-btn, .id-trans-btn2').forEach(btn => btn.textContent = data.btn);
-            document.getElementById('trans-testi-title').textContent = data.testiTitle;
-            document.getElementById('trans-q1').textContent = data.q1;
-            document.getElementById('trans-r1').textContent = data.r1;
-            document.getElementById('trans-q2').textContent = data.q2;
-            document.getElementById('trans-r2').textContent = data.r2;
-            document.getElementById('trans-footer-copy').textContent = data.footerCopy;
-            document.getElementById('trans-footer-legal').textContent = data.footerLegal;
-            document.getElementById('trans-footer-conf').textContent = data.footerConf;
-        }
 
         function openModal(type) {
             document.getElementById('modal-dynamic-text').innerHTML = translations[currentLang][type];
