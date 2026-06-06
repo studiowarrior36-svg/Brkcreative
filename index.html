@@ -629,17 +629,42 @@
     </section>
 
     <div id="legalModal" class="modal-mentions">
-        <div class="modal-content">
+                <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <div id="modal-dynamic-text"></div>
         </div>
     </div>
+</div>
+    
+<section id="choose-region" style="padding: 60px 20px; text-align: center;">
+    <h2 style="font-size: 2rem; margin-bottom: 30px; color: var(--texte-principal);">Choisissez votre pays ou région</h2>
 
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; max-width: 800px; margin: 0 auto;">
+            <div onclick="window.location.href='index.html'"
+                style="background: #fff; padding: 20px; width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; transition: 0.2s;"
+                onmouseover="this.style.transform='translateY(-5px)'"
+                onmouseout="this.style.transform='translateY(0)'">
+                <h3 style="margin: 0; font-size: 1.2rem; color: #000;">🇬🇦 Gabon</h3>
+                <p style="margin: 5px 0; color: #555;">Français</p>
+            </div>
+
+            <div onclick="window.location.href='en/index.html'"
+                style="background: #fff; padding: 20px; width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; transition: 0.2s;"
+                onmouseover="this.style.transform='translateY(-5px)'"
+                onmouseout="this.style.transform='translateY(0)'">
+                <h3 style="margin: 0; font-size: 1.2rem; color: #000;">🇺🇸 United States</h3>
+                <p style="margin: 5px 0; color: #555;">English</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- VOTRE FOOTER MODIFIÉ -->
     <footer>
         <div class="footer-copyright" id="trans-footer-copy">
             © 2026 BRK Creative — Tous droits réservés.
         </div>
-        
+
         <div class="footer-legal">
             <a onclick="openModal('mentions')">Mentions Légales</a>
             <a onclick="openModal('confidentialite')">Politique de confidentialité</a>
@@ -648,10 +673,11 @@
             <a onclick="openModal('conditions')">Conditions d'utilisation</a>
             <a onclick="openModal('plan')">Plan du site</a>
             
-            <span class="gabon-footer-label">Basé au Gabon</span>
+            <!-- LIEN CONNECTÉ ICI -->
+            <a href="#choose-region" class="gabon-footer-label" style="text-decoration: none; cursor: pointer;">Basé au Gabon</a>
         </div>
     </footer>
-
+    
     <script>
         let currentLang = 'fr';
 
