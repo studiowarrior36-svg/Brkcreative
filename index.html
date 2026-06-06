@@ -514,15 +514,26 @@
             .footer-legal { justify-content: center; gap: 12px; }
             .gabon-footer-label { border-left: none; padding-left: 0; width: 100%; display: block; margin-top: 5px;}
         }
-    </style>
+        
+        .separator {
+    display: inline-block;
+    width: 3px;               /* Plus épaisse pour l'effet "en gras" */
+    height: 16px;             /* Hauteur réduite pour s'aligner sur le texte */
+    background-color: #ffffff; /* Couleur blanche (ou votre variable) */
+    margin: 0 5px;            /* Ajuste l'espace horizontal si besoin */
+    border-radius: 2px;       /* Optionnel : adoucit légèrement les bords de la barre */
+}
+    </style>   
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo-container">
-            <img src="Method Draw Image.png" alt="Logo BRK Creative" class="logo-img">
-            <span class="slogan-nav" id="trans-slogan">CRÉER POUR INSPIRER</span>
-        </div>
+   <div class="logo-container">
+    <img src="Method Draw Image.png" alt="Logo BRK Creative" class="logo-img">
+    <span class="separator">|</span>
+    <span class="slogan">CRÉER POUR INSPIRER</span>
+</div>
+
+</div>
         
         <div class="nav-controls">
             <a href="mailto:Studiowarrior36@gmail.com?subject=Demande%20de%20collaboration%20-%20BRK%20Creative" class="btn-cta-nav" id="trans-nav-cta">Travailler avec moi</a>
