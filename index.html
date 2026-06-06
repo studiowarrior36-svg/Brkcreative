@@ -447,19 +447,18 @@
             cursor: pointer;
             background: transparent;
             border: none;
-        }
-      header {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    width: 100% !important;
-    padding: 20px 5%;
-    box-sizing: border-box;
+       /* Positionne le bouton tout à droite au fond de l'écran */
+.nav-controls {
+    position: absolute !important;
+    top: 20px;                     /* Ajustez la hauteur par rapport au haut de l'écran */
+    right: 5%;                     /* Aligne parfaitement avec le bord droit */
+    margin: 0 !important;          /* Supprime les marges parasites */
 }
+/* Redonne une taille normale au bloc logo pour éviter qu'il pousse le reste */
 .logo-container {
     display: flex !important;
     align-items: center !important;
-    width: auto !important; 
+    width: auto !important;
 }
 
         /* --- FOOTER --- */
@@ -540,13 +539,12 @@
 </head>
 <body>
 
-   <div class="logo-container">
-    <img src="Method Draw Image.png" alt="Logo BRK Creative" class="logo-img">
-    <span class="separator">|</span>
-    <span class="slogan">CRÉER POUR INSPIRER</span>
-</div>
-
-</div>
+       <header>
+        <div class="logo-container">
+            <img src="Method Draw Image.png" alt="Logo BRK Creative" class="logo-img">
+            <span class="separator">|</span>
+            <span class="slogan">CRÉER POUR INSPIRER</span>
+        </div>
         
         <div class="nav-controls">
             <a href="mailto:Studiowarrior36@gmail.com?subject=Demande%20de%20collaboration%20-%20BRK%20Creative" class="btn-cta-nav" id="trans-nav-cta">Travailler avec moi</a>
