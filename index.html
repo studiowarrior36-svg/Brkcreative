@@ -10,12 +10,13 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Dravenik Creative— Portfolio Professionnel">
     <meta property="og:description" content="Découvrez mes créations et projets en post-production visuelle, motion design et modélisation 3D.">
-    <!-- Mise à jour de l'image de partage Open Graph -->
     <meta property="og:image" content="https://studiowarrior36-svg.github.io/Brkcreative/My%20Logo%203.png">
     <meta property="og:url" content="https://studiowarrior36-svg.github.io/Brkcreative/">
 
-    <!-- Remplacement du Favicon par My Logo 3.png -->
-    <link rel="icon" type="image/png" href="My Logo 3.png">
+    <!-- Optimisation du Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="My Logo 3.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="My Logo 3.png">
+    <link class="apple-touch-icon" sizes="180x180" href="My Logo 3.png">
 
     <style>
         /* ==========================================
@@ -65,7 +66,6 @@
             display: flex !important;
             align-items: center !important;
             width: auto !important;
-            gap: 20px;
         }
 
         .logo-img {
@@ -75,22 +75,12 @@
             display: block;
         }
 
-        .slogan-nav {
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            color: var(--texte-principal);
-            font-weight: 700;
-            text-transform: uppercase;
-            border-left: 2px solid var(--bordure);
-            padding-left: 20px;
-        }
-
-        /* Positionne le bouton tout à droite au fond de l'écran */
+        /* Positionne le bouton tout à droite */
         .nav-controls {
             position: absolute !important;
-            top: 20px;                     /* Ajustez la hauteur par rapport au haut de l'écran */
-            right: 5%;                     /* Aligne parfaitement avec le bord droit */
-            margin: 0 !important;          /* Supprime les marges parasites */
+            top: 20px;                     
+            right: 5%;                     
+            margin: 0 !important;          
             display: flex;
             align-items: center;
         }
@@ -492,13 +482,6 @@
             color: var(--texte-principal);
         }
 
-        .gabon-footer-label {
-            color: var(--texte-secondaire);
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding-left: 5px;
-        }
-
         /* --- MEDIA QUERIES MOBILE --- */
         @media (max-width: 768px) {
             .navbar {
@@ -511,10 +494,6 @@
                 flex-direction: column;
                 gap: 8px;
             }
-            .slogan-nav {
-                border-left: none;
-                padding-left: 0;
-            }
             .nav-controls {
                 position: relative !important;
                 top: auto;
@@ -526,24 +505,14 @@
             .creations-section, .tarifs-section, .testimonials-section { padding: 60px 20px; }
             footer { flex-direction: column; text-align: center; gap: 15px; }
             .footer-legal { justify-content: center; gap: 12px; }
-            .gabon-footer-label { border-left: none; padding-left: 0; width: 100%; display: block; margin-top: 5px;}
         }
         
-        .separator {
-            display: inline-block;
-            width: 3px;               /* Plus épaisse pour l'effet "en gras" */
-            height: 16px;             /* Hauteur réduite pour s'aligner sur le texte */
-            background-color: #ffffff; /* Couleur blanche (ou votre variable) */
-            margin: 0 5px;            /* Ajuste l'espace horizontal si besoin */
-            border-radius: 2px;       /* Optionnel : adoucit légèrement les bords de la barre */
-        }
         .logo-principal {
             display: block;
             margin: 0 auto 20px auto;
             max-width: 250px;         
             height: auto;             
         }
-
     </style>   
 </head>
 <body>
@@ -551,7 +520,6 @@
     <header class="navbar">
         <div class="logo-container">
             <img src="My Logo 3.png" alt="Logo Dravenik Creative" class="logo-img">
-            <span class="slogan-nav">CRÉER POUR INSPIRER</span>
         </div>
         
         <div class="nav-controls">
@@ -564,7 +532,7 @@
             <span class="subtitle" id="trans-about-sub">À PROPOS</span>
             <img src="My Logo 3.png" alt="Dravenik Creative" class="logo-principal">
             <h2 id="trans-welcome-title">Bienvenue sur mon portfolio</h2>
-            <p id="trans-about-desc">Découvrez mes créations, mes projets et mon univers visuel. DRAVENIK Creative est un studio spécialisé dans la post-production de haute qualité, le Motion Design d'impact et l'animation 3D. Nous mettons en valeur votre marque grâce à un savoir-faire technique rigoureux et une créativité sans limite.</p>
+            <p id="trans-about-desc">Découvrez mes créations, mes projets et mon univers visuel. Dravenik Creative est un studio spécialisé dans la post-production de haute qualité, le Motion Design d'impact et l'animation 3D. Nous mettons en valeur votre marque grâce à un savoir-faire technique rigoureux et une créativité sans limite.</p>
         </div>
     </section>
 
@@ -572,12 +540,10 @@
         <div class="creations-header">
             <h2 id="trans-creations-title">NOS CRÉATIONS</h2>
             <div class="filter-container">
-                
-        <button class="filter-btn active" onclick="filterCreations('all', event)" id="filter-all" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Tous</button>
-        <button class="filter-btn" onclick="filterCreations('postprod', event)" id="filter-postprod" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Post-Production</button>
-        <button class="filter-btn" onclick="filterCreations('motion', event)" id="filter-motion" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Motion Design</button>
-        <button class="filter-btn" onclick="filterCreations('graphique', event)" id="filter-graphique" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Design Graphic</button>
-       
+                <button class="filter-btn active" onclick="filterCreations('all', event)" id="filter-all" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Tous</button>
+                <button class="filter-btn" onclick="filterCreations('postprod', event)" id="filter-postprod" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Post-Production</button>
+                <button class="filter-btn" onclick="filterCreations('motion', event)" id="filter-motion" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Motion Design</button>
+                <button class="filter-btn" onclick="filterCreations('graphique', event)" id="filter-graphique" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Design Graphic</button>
             </div>
         </div>
 
@@ -613,7 +579,6 @@
                 <div class="creation-media">
                     <img src="Phrase%202.png" alt="Visual Identity">
                 </div>
-                
                 <div class="creation-info">
                     <h3 id="trans-proj4-title">Visual Identity</h3>
                     <p id="trans-proj4-desc">Conception de chartes graphiques uniques et logotypes à fort impact.</p>
@@ -707,11 +672,10 @@
 
         const translations = {
             fr: {
-                slogan: "CRÉER POUR INSPIRER",
                 navCta: "Travailler avec moi",
                 aboutSub: "À PROPOS",
                 welcomeTitle: "Bienvenue sur mon portfolio",
-                aboutDesc: "Découvrez mes créations, mes projets et mon univers visuel. DRAVENIK Creative est un studio spécialisé dans la post-production de haute qualité, le Motion Design d'impact et l'animation 3D. Nous mettons en valeur votre marque grâce à un savoir-faire technique rigoureux et une créativité sans limite.",
+                aboutDesc: "Découvrez mes créations, mes projets et mon univers visuel. Dravenik Creative est un studio spécialisé dans la post-production de haute qualité, le Motion Design d'impact et l'animation 3D. Nous mettons en valeur votre marque grâce à un savoir-faire technique rigoureux et une créativité sans limite.",
                 creationsTitle: "NOS CRÉATIONS",
                 filterAll: "Tous",
                 filterGraphique: "Design Graphic",
@@ -731,8 +695,6 @@
                 q2: '"L\'équipe a su capter instantanément l\'essence même de notre marque. Le rendu visuel final dépasse de loin nos attentes."',
                 r2: "Producteur Indépendant",
                 footerCopy: "© 2026 Dravenik Creative — Tous droits réservés.",
-                footerLegal: "Mentions Légales",
-                footerConf: "Politique de confidentialité",
                 
                 mentions: "<h3>Mentions Légales</h3><p><strong>Éditeur :</strong> Edn Berki.</p><p><strong>Hébergement :</strong> GitHub Pages (GitHub Inc., San Francisco, CA, États-Unis).</p><p>Tous les projets et visuels affichés sont soumis au droit d'auteur.</p>",
                 confidentialite: "<h3>Politique de confidentialité</h3><p>Nous respectons votre vie privée. Ce site ne collecte aucune donnée à des fins publicitaires ou de traçage commercial invasif.</p>",
