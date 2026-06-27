@@ -8,15 +8,15 @@
     <meta name="description" content="Studio de création spécialisé dans la post-production vidéo de haute qualité, le Motion Design d'impact et l'animation 3D.">
     
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Dravenik Creative— Portfolio Professionnel">
+    <meta property="og:title" content="Dravenik Creative — Portfolio Professionnel">
     <meta property="og:description" content="Découvrez mes créations et projets en post-production visuelle, motion design et modélisation 3D.">
     <meta property="og:image" content="https://studiowarrior36-svg.github.io/Brkcreative/My%20Logo%203.png">
     <meta property="og:url" content="https://studiowarrior36-svg.github.io/Brkcreative/">
 
     <!-- Optimisation du Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="My Logo 3.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="My Logo 3.png">
-    <link class="apple-touch-icon" sizes="180x180" href="My Logo 3.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="My%20Logo%203.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="My%20Logo%203.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="My%20Logo%203.png">
 
     <style>
         /* ==========================================
@@ -68,11 +68,40 @@
             width: auto !important;
         }
 
-        .logo-img {
-            width: 95px;
-            max-height: 48px;
-            object-fit: contain;
-            display: block;
+        .logo-text-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 8px 22px;
+            border-radius: 30px;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .logo-text-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: -60%;
+            background: linear-gradient(120deg, #007bff, #00e0ff, #7b2ff7, #ff2fb4, #ff7a18, #007bff);
+            background-size: 400% 400%;
+            filter: blur(10px);
+            z-index: -1;
+            animation: animatedColors 8s ease infinite;
+        }
+
+        @keyframes animatedColors {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .logo-text {
+            position: relative;
+            z-index: 1;
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: var(--texte-principal);
+            white-space: nowrap;
         }
 
         /* Positionne le bouton tout à droite */
@@ -124,10 +153,45 @@
             margin-bottom: 15px;
         }
 
-        .presentation-text h1 {
-            font-size: 3.5rem;
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 14px;
             margin-bottom: 15px;
-            line-height: 1.2;
+            background-color: #000;
+        }
+
+        .hero-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(5,11,20,0.35), rgba(5,11,20,0.8));
+            z-index: 1;
+        }
+
+        .hero-banner-track {
+            display: flex;
+            height: 100%;
+            width: max-content;
+            animation: scrollBanner 25s linear infinite;
+        }
+
+        .hero-banner-track img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+            flex-shrink: 0;
+            margin-right: 6px;
+        }
+
+        @keyframes scrollBanner {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .presentation-text h2 {
@@ -447,6 +511,52 @@
             border: none;
         }
 
+        /* --- SECTION CONTACT & RÉSEAUX --- */
+        .contact-section {
+            background-color: var(--bg-alternatif);
+            padding: 120px 10%;
+            border-top: 1px solid var(--bordure);
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        .contact-block {
+            background: var(--bg-carte);
+            border: 1px solid var(--bordure);
+            border-radius: 12px;
+            padding: 45px 35px;
+            width: 360px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .contact-block:hover {
+            border-color: var(--bleu-accent);
+            box-shadow: 0 20px 40px var(--shadow-color);
+            transform: translateY(-5px);
+        }
+
+        .contact-block h2 {
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .contact-desc {
+            color: var(--texte-secondaire);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
         /* --- FOOTER --- */
         footer {
             display: flex;
@@ -501,37 +611,37 @@
                 margin-top: 15px !important;
             }
             .presentation-section { padding: 60px 20px; }
-            .presentation-text h1 { font-size: 2.2rem; }
+            .hero-banner { height: 170px; }
             .creations-section, .tarifs-section, .testimonials-section { padding: 60px 20px; }
             footer { flex-direction: column; text-align: center; gap: 15px; }
             .footer-legal { justify-content: center; gap: 12px; }
         }
         
-        .logo-principal {
-            display: block;
-            margin: 0 auto 20px auto;
-            max-width: 250px;         
-            height: auto;             
-        }
     </style>   
 </head>
 <body>
 
     <header class="navbar">
         <div class="logo-container">
-            <img src="My Logo 3.png" alt="Logo Dravenik Creative" class="logo-img">
+            <span class="logo-text-wrapper">
+                <span class="logo-text">BIENVENUE CHEZ NOUS</span>
+            </span>
         </div>
         
-        <div class="nav-controls">
-            <a href="mailto:Studiowarrior36@gmail.com?subject=Demande%20de%20collaboration%20-%20Dravenik%20Creative" class="btn-cta-nav" id="trans-nav-cta">Travailler avec moi</a>
-        </div>
     </header>
 
     <section class="presentation-section">
         <div class="presentation-text">
             <span class="subtitle" id="trans-about-sub">À PROPOS</span>
-            <img src="My Logo 3.png" alt="Dravenik Creative" class="logo-principal">
-            <h2 id="trans-welcome-title">Bienvenue sur mon portfolio</h2>
+            <div class="hero-banner">
+                <div class="hero-banner-track">
+                    <!-- Ajoutez ou remplacez vos images ci-dessous : elles défileront automatiquement en boucle -->
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80" alt="">
+                </div>
+            </div>
             <p id="trans-about-desc">Découvrez mes créations, mes projets et mon univers visuel. Dravenik Creative est un studio spécialisé dans la post-production de haute qualité, le Motion Design d'impact et l'animation 3D. Nous mettons en valeur votre marque grâce à un savoir-faire technique rigoureux et une créativité sans limite.</p>
         </div>
     </section>
@@ -543,6 +653,7 @@
                 <button class="filter-btn active" onclick="filterCreations('all', event)" id="filter-all" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Tous</button>
                 <button class="filter-btn" onclick="filterCreations('postprod', event)" id="filter-postprod" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Post-Production</button>
                 <button class="filter-btn" onclick="filterCreations('motion', event)" id="filter-motion" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Motion Design</button>
+                <button class="filter-btn" onclick="filterCreations('3d', event)" id="filter-3d" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Animation 3D</button>
                 <button class="filter-btn" onclick="filterCreations('graphique', event)" id="filter-graphique" style="transition: background-color 0.3s ease, transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Design Graphic</button>
             </div>
         </div>
@@ -559,7 +670,7 @@
             </div>
             <div class="creation-item" data-category="motion">
                 <div class="creation-media">
-                    <video autoplay loop muted src="https://assets.mixkit.co/videos/preview/mixkit-abstract-laser-lights-background-42013-large.mp4"></video>
+                    <video autoplay loop muted playsinline src="https://assets.mixkit.co/videos/preview/mixkit-abstract-laser-lights-background-42013-large.mp4"></video>
                 </div>
                 <div class="creation-info">
                     <h3>Dynamic Branding</h3>
@@ -601,7 +712,6 @@
             </div>
 
             <div class="tarif-card">
-                <div class="badge-premium" id="trans-badge">CONSEILLÉ</div>
                 <h3 id="trans-opt2-title">OPTION 2 : BUSINESS PREMIUM</h3>
                 <p class="tarif-desc" id="trans-opt2-desc">Prise en charge complète, déploiement d'identité visuelle intégrale, animations graphiques avancées, et livrables prioritaires avec suivi personnalisé.</p>
                 <a href="mailto:Studiowarrior36@gmail.com?subject=Demande%20de%20devis%20-%20Option%20Business%20Premium" class="btn-canal" id="trans-btn2">Demander un devis</a>
@@ -621,6 +731,21 @@
                 <p class="quote" id="trans-q2">"L'équipe a su capter instantanément l'essence même de notre marque. Le rendu visuel final dépasse de loin nos attentes."</p>
                 <h4 class="client-name">NDJI</h4>
                 <span class="client-role" id="trans-r2">Producteur Indépendant</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-block">
+                <h2 id="trans-contact-title">CONTACT</h2>
+                <p class="contact-desc" id="trans-contact-desc">Une idée, un projet ? Parlons-en ensemble.</p>
+                <a href="mailto:Studiowarrior36@gmail.com?subject=Demande%20de%20collaboration%20-%20Dravenik%20Creative" class="btn-canal" id="trans-nav-cta">Travailler avec moi</a>
+            </div>
+            <div class="contact-block">
+                <h2 id="trans-follow-title">SUIVEZ-NOUS</h2>
+                <p class="contact-desc" id="trans-follow-desc">Suivez-nous sur nos différents sites :</p>
+                <a href="https://beacons.ai/dravenikcreative" target="_blank" rel="noopener noreferrer" class="btn-canal" id="trans-follow-btn">Nos réseaux</a>
             </div>
         </div>
     </section>
@@ -673,8 +798,12 @@
         const translations = {
             fr: {
                 navCta: "Travailler avec moi",
+                contactTitle: "CONTACT",
+                contactDesc: "Une idée, un projet ? Parlons-en ensemble.",
+                followTitle: "SUIVEZ-NOUS",
+                followDesc: "Suivez-nous sur nos différents sites :",
+                followBtn: "Nos réseaux",
                 aboutSub: "À PROPOS",
-                welcomeTitle: "Bienvenue sur mon portfolio",
                 aboutDesc: "Découvrez mes créations, mes projets et mon univers visuel. Dravenik Creative est un studio spécialisé dans la post-production de haute qualité, le Motion Design d'impact et l'animation 3D. Nous mettons en valeur votre marque grâce à un savoir-faire technique rigoureux et une créativité sans limite.",
                 creationsTitle: "NOS CRÉATIONS",
                 filterAll: "Tous",
@@ -687,7 +816,6 @@
                 opt1Desc: "Les tarifs varient selon la complexité et les besoins spécifiques du projet. Contactez notre équipe pour concevoir un devis entièrement sur-mesure.",
                 opt2Title: "OPTION 2 : BUSINESS PREMIUM",
                 opt2Desc: "Prise en charge complète, déploiement d'identité visuelle intégrale, animations graphiques avancées, et livrables prioritaires avec suivi personnalisé.",
-                badge: "CONSEILLÉ",
                 btn: "Demander un devis",
                 testiTitle: "CE QUE DISENT NOS CLIENTS",
                 q1: '"Un travail de post-production d\'une qualité rare. Le rythme du montage a transcendé notre projet du début à la fin."',
@@ -701,7 +829,7 @@
                 engagement: "<h3>Engagement de confidentialité</h3><p>Dravenik Creative s'engage formellement à sécuriser et ne jamais divulguer les fichiers vidéos bruts, rushes ou éléments d'identité de marque confiés lors de nos productions.</p>",
                 cookies: "<h3>Utilisation des cookies</h3><p>Ce site utilise uniquement des cookies techniques nécessaires au bon fonctionnement de la plateforme et à l'affichage linguistique fluide.</p>",
                 conditions: "<h3>Conditions d'utilisation</h3><p>En naviguant sur ce portfolio, vous acceptez de respecter l'intégrité des créations visuelles présentes. Toute copie ou réutilisation sans accord écrit est interdite.</p>",
-                plan: "<h3>Plan du site</h3><p>• Accueil / À Propos<br>• Nos Créations (Showreels, Animation, Motion)<br>• Nos Options (Formules de Devis)<br>• Témoignages Clients</p>"
+                plan: "<h3>Plan du site</h3><p>• Accueil / À Propos<br>• Nos Créations (Showreels, Animation, Motion)<br>• Nos Options (Formules de Devis)<br>• Témoignages Clients<br>• Contact & Suivez-nous</p>"
             }
         };
 
@@ -722,6 +850,12 @@
                 closeModal();
             }
         }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
